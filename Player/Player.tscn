@@ -30,12 +30,17 @@ script = ExtResource("1_t8wne")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o1pmw")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
 position = Vector2(0, 1.90735e-06)
 mesh = SubResource("SphereMesh_bppwt")
 texture = SubResource("GradientTexture1D_al3aj")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-position_smoothing_speed = 9.0
+[node name="SmoothCam" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_2bw23")
+target = NodePath("../CollisionShape2D")
+
+[node name="Camera2D" type="Camera2D" parent="SmoothCam"]
+zoom = Vector2(2, 2)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
