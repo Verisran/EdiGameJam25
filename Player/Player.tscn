@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjmis435pqcrb"]
+
+[ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
+[ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1pmw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcemc"]
+shading_mode = 0
+albedo_color = Color(0.898039, 0.133333, 0.133333, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bppwt"]
+material = SubResource("StandardMaterial3D_jcemc")
+radius = 10.0
+height = 20.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Gradient" id="Gradient_2kr5u"]
+colors = PackedColorArray(0.972549, 0, 0, 1, 0.972549, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_al3aj"]
+gradient = SubResource("Gradient_2kr5u")
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+physics_interpolation_mode = 1
+floor_constant_speed = true
+script = ExtResource("1_t8wne")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o1pmw")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(0, 1.90735e-06)
+mesh = SubResource("SphereMesh_bppwt")
+texture = SubResource("GradientTexture1D_al3aj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 9.0
+script = ExtResource("2_2bw23")
