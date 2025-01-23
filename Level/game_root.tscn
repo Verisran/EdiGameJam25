@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://be8uwg3djjkpy"]
+[gd_scene load_steps=7 format=3 uid="uid://be8uwg3djjkpy"]
 
 [ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="1_5r0le"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pay3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwdh6"]
-size = Vector2(444, 20)
+size = Vector2(922, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_etj4w"]
+
+[sub_resource type="Gradient" id="Gradient_aydkb"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6r8uy"]
+gradient = SubResource("Gradient_aydkb")
 
 [node name="GameRoot" type="Node"]
 
@@ -19,7 +24,10 @@ physics_material_override = SubResource("PhysicsMaterial_pay3r")
 shape = SubResource("RectangleShape2D_nwdh6")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
-scale = Vector2(444, 20)
+scale = Vector2(922, 40)
 mesh = SubResource("QuadMesh_etj4w")
+texture = SubResource("GradientTexture1D_6r8uy")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_5r0le")]
+speed = 200.0
+speed_decel = 0.1

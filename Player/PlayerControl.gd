@@ -1,25 +1,50 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@onready var camera: Camera2D = $SmoothCam/Camera2D
 
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+@export var speed: float = 20:
+	get:
+		if(!is_on_floor()):
+			return speed * air_mult
+		else:
+			return speed
+@export var air_mult: float = 1.5
+@export var speed_accel: float = 1
+@export var speed_decel: float = 0.5
+@export var jump_force: float = 500:
+	get:
+		return -jump_force
 
-	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+@export var grav_force: float = 10
+var grav_multiplier: float = 1
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("Left", "Right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+var move_dir: float:
+	get:
+		return Input.get_axis("Left", "Right")
 
+func _physics_process(_delta: float) -> void:
+	velocity_control()
+	time_in_air()
 	move_and_slide()
+	print(grav_multiplier, " ", grav_force)
+func velocity_control()->void:
+	velocity_x_lerped()
+	if not is_on_floor():
+		velocity.y += grav_force*grav_multiplier
+
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		velocity.y += jump_force
+
+
+func velocity_x_lerped()->void:
+	if(move_dir):
+		velocity.x = lerpf(velocity.x, speed * move_dir, speed_accel)
+	else:
+		velocity.x = lerpf(velocity.x, 0, speed_decel)
+
+func time_in_air()->void:
+	if(!is_on_floor() and grav_multiplier < 10):
+		grav_multiplier += 0.1
+	else:
+		grav_multiplier = 1
