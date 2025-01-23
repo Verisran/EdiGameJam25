@@ -1,6 +1,13 @@
-extends Node
+extends Node2D
 
 enum TargetLayer{ World = 1, PlayerCol = 2, PlayerHitbox = 4, EnemyCol = 8, EnemyHitbox = 16}
+
+func vec_toward_mouse(from_node: Node2D)->Vector2:
+	var hold_rotation: float = from_node.rotation
+	from_node.look_at(get_global_mouse_position())
+	var result: Vector2 = from_node.transform.x
+	from_node.rotation = hold_rotation
+	return result
 
 func ray(myself: Node2D, from: Vector2, direction: Vector2, length: float, layers: int, bodies: bool = true, areas: bool = false, space_state: PhysicsDirectSpaceState2D = null)->Dictionary:
 	if(space_state == null):

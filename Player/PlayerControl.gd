@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @onready var camera: Camera2D = $SmoothCam/Camera2D
 
-
 @export var speed: float = 200:
 	get:
 		if(!is_on_floor()):
@@ -27,7 +26,6 @@ func _physics_process(_delta: float) -> void:
 	velocity_control()
 	time_in_air()
 	move_and_slide()
-	
 
 func velocity_control()->void:
 	velocity_x_lerped()
@@ -36,7 +34,6 @@ func velocity_control()->void:
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y += jump_force
-
 
 func velocity_x_lerped()->void:
 	if(move_dir):
