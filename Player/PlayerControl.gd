@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $SmoothCam/Camera2D
 
 
-@export var speed: float = 20:
+@export var speed: float = 200:
 	get:
 		if(!is_on_floor()):
 			return speed * air_mult
@@ -11,7 +11,7 @@ extends CharacterBody2D
 			return speed
 @export var air_mult: float = 1.5
 @export var speed_accel: float = 1
-@export var speed_decel: float = 0.5
+@export var speed_decel: float = 0.25
 @export var jump_force: float = 500:
 	get:
 		return -jump_force
@@ -27,7 +27,8 @@ func _physics_process(_delta: float) -> void:
 	velocity_control()
 	time_in_air()
 	move_and_slide()
-	print(grav_multiplier, " ", grav_force)
+	
+
 func velocity_control()->void:
 	velocity_x_lerped()
 	if not is_on_floor():

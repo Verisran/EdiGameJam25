@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjmis435pqcrb"]
+[gd_scene load_steps=9 format=3 uid="uid://cjmis435pqcrb"]
 
 [ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
 [ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
@@ -22,12 +22,13 @@ colors = PackedColorArray(0.972549, 0, 0, 1, 0.972549, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_al3aj"]
 gradient = SubResource("Gradient_2kr5u")
 
+[sub_resource type="QuadMesh" id="QuadMesh_uhqfg"]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 physics_interpolation_mode = 1
 floor_constant_speed = true
 floor_max_angle = 1.0472
 script = ExtResource("1_t8wne")
-jump_force = 5000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o1pmw")
@@ -35,6 +36,12 @@ shape = SubResource("CircleShape2D_o1pmw")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
 position = Vector2(0, 1.90735e-06)
 mesh = SubResource("SphereMesh_bppwt")
+texture = SubResource("GradientTexture1D_al3aj")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="CollisionShape2D"]
+position = Vector2(9.75, 1.90735e-06)
+scale = Vector2(20.5, 1)
+mesh = SubResource("QuadMesh_uhqfg")
 texture = SubResource("GradientTexture1D_al3aj")
 
 [node name="SmoothCam" type="Node2D" parent="." node_paths=PackedStringArray("target")]

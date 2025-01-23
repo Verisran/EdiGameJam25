@@ -29,5 +29,4 @@ mesh = SubResource("QuadMesh_etj4w")
 texture = SubResource("GradientTexture1D_6r8uy")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_5r0le")]
-speed = 200.0
-speed_decel = 0.1
+collision_layer = 2
