@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var camera: Camera2D = $SmoothCam/Camera2D
 
@@ -49,3 +50,4 @@ func time_in_air()->void:
 
 func impulse(vector: Vector2, strength: float)->void:
 	velocity += vector*strength
+	grav_multiplier = 1

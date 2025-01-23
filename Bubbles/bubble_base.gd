@@ -8,7 +8,9 @@ class_name BubbleBase
 func _physics_process(delta: float)->void:
 	var result: Dictionary = PhysicsCast.shape(self, shape, layers)[0]
 	if(!result.is_empty()):
-		print(result.collider)
+		if(result.collider is Player):
+			on_collide(result.collider)
+		#print(result.collider)
 
-func on_collide()->void:
-	pass
+func on_collide(target: Player)->void:
+	target.impulse(Vector2.UP, 200)
