@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://be8uwg3djjkpy"]
+[gd_scene load_steps=9 format=3 uid="uid://be8uwg3djjkpy"]
 
 [ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="1_5r0le"]
+[ext_resource type="Script" path="res://Bubbles/bubble_base.gd" id="2_xdtgb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pay3r"]
 
@@ -14,10 +15,13 @@ size = Vector2(922, 40)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6r8uy"]
 gradient = SubResource("Gradient_aydkb")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sgim4"]
+radius = 20.0
+
 [node name="GameRoot" type="Node"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 170)
+position = Vector2(0, 176)
 physics_material_override = SubResource("PhysicsMaterial_pay3r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -30,3 +34,9 @@ texture = SubResource("GradientTexture1D_6r8uy")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_5r0le")]
 collision_layer = 2
+
+[node name="BubbleBase" type="Node2D" parent="."]
+position = Vector2(0, 135)
+script = ExtResource("2_xdtgb")
+shape = SubResource("CircleShape2D_sgim4")
+layers = 2

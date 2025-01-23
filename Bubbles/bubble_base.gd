@@ -1,11 +1,14 @@
 extends Node2D
+class_name BubbleBase
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
+@export var shape: Shape2D
+@export var layers: PhysicsCast.TargetLayer
+@export var push_mode: bool = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float)->void:
+	var result: Dictionary = PhysicsCast.shape(self, shape, layers)[0]
+	if(!result.is_empty()):
+		print(result.collider)
+
+func on_collide()->void:
 	pass

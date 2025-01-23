@@ -46,3 +46,6 @@ func time_in_air()->void:
 		grav_multiplier += 0.1
 	else:
 		grav_multiplier = 1
+
+func impulse(vector: Vector2, strength: float)->void:
+	velocity += vector*strength
