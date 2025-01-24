@@ -12,7 +12,7 @@ func vec_toward_mouse(from_node: Node2D)->Vector2:
 func ray(myself: Node2D, from: Vector2, direction: Vector2, length: float, layers: int, bodies: bool = true, areas: bool = false, space_state: PhysicsDirectSpaceState2D = null)->Dictionary:
 	if(space_state == null):
 		space_state = myself.get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(from, direction*length, layers)
+	var query = PhysicsRayQueryParameters2D.create(from, myself.global_position+direction*length, layers)
 	query.collide_with_bodies = bodies
 	query.collide_with_areas = areas
 	return space_state.intersect_ray(query)
