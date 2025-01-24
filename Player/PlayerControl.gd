@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends BaseKinematic
 class_name Player
 
 @onready var camera: Camera2D = $SmoothCam/Camera2D
@@ -14,7 +14,7 @@ class_name Player
 @export var speed_accel: float = 0.8
 @export var speed_decel: float = 0.25:
 	get:
-		if(!move_dir and !is_on_floor()):
+		if(!move_dir):
 			return speed_decel * 0.1
 		return speed_decel
 @export var wall_vector: Vector2 = Vector2.ZERO
@@ -92,7 +92,12 @@ func time_in_air()->void:
 	else:
 		grav_multiplier = 1
 
-func impulse(vector: Vector2, strength: float)->void:
+func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->void:
+	if(use_current_dir):
+		vector = velocity.normalized()
 	velocity += vector*strength
 	if(!is_on_floor()):
 		grav_multiplier = 1
+
+func amplify(strength: float)->void:
+	velocity = velocity.normalized()*strength
