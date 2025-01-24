@@ -20,14 +20,16 @@ var cooldown: bool = false
 @export_category("Damage")
 @export var damage: float = 0
 
-func _ready() -> void:
-	for layer in target_layers:
-		layers += layer
+func _init() -> void:
 	if(solid):
 		collider = CollisionShape2D.new()
 		collider.shape = body_shape
 		add_child(collider)
 
+func _ready() -> void:
+	for layer in target_layers:
+		layers += layer
+	
 func _physics_process(delta: float)->void:
 	if(GameManager.distance_to_player(self) > 1000 or !GameManager.level_started):
 		return

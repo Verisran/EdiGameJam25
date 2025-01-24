@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bf8ub5li6pm6g"]
+[gd_scene load_steps=13 format=3 uid="uid://bf8ub5li6pm6g"]
 
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="1_7ibd7"]
+[ext_resource type="Script" path="res://Level/Trigger/Scripts/SpawnTrigger.gd" id="2_3itwu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pay3r"]
 
@@ -25,6 +26,9 @@ size = Vector2(932, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lmtl4"]
 radius = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3s3ng"]
+size = Vector2(224, 120)
 
 [node name="DebugLevel" type="Node2D"]
 
@@ -89,7 +93,6 @@ push_mode = 1
 [node name="BubbleBase2" parent="." instance=ExtResource("1_7ibd7")]
 position = Vector2(0, -258)
 rotation = -0.662351
-scale = Vector2(1, 1)
 pop_on_collide = true
 solid = false
 push_mode = 4
@@ -109,3 +112,14 @@ shape = SubResource("CircleShape2D_lmtl4")
 solid = false
 push_mode = 2
 cooldown_time = 9999.0
+
+[node name="SpawnTrigger" type="Area2D" parent="."]
+position = Vector2(-1265, -193)
+script = ExtResource("2_3itwu")
+enemy = ExtResource("1_7ibd7")
+prep_amt = 3
+spawn_amt = 3
+spawn_loc = Array[Vector2]([Vector2(50, -100), Vector2(-100, 100), Vector2(150, -150)])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnTrigger"]
+shape = SubResource("RectangleShape2D_3s3ng")

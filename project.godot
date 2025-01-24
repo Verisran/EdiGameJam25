@@ -30,6 +30,19 @@ window/size/resizable=false
 
 project/assembly_name="BubbleBound"
 
+[file_customization]
+
+folder_colors={
+"res://Autoloads/": "blue",
+"res://BaseNodes/": "teal",
+"res://Bubbles/": "green",
+"res://Health/": "yellow",
+"res://Level/": "orange",
+"res://Player/": "red",
+"res://PlayerWeapon/": "blue",
+"res://UIScenes/": "teal"
+}
+
 [input]
 
 Left={

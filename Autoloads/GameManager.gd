@@ -10,7 +10,8 @@ extends Node
 @onready var pre_level_start: ColorRect = preload("res://UIScenes/pre_level_start.tscn").instantiate()
 @onready var death_screen: ColorRect = preload("res://UIScenes/you_died.tscn").instantiate()
 
-var current_level: Resource
+#var current_level: Resource
+var level_file_path: String
 var level_started: bool = false
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _ready() -> void:
 func change_level(level_path: String)->void:
 	level_started = false
 	GameRoot.add_child(load_ui)
+	level_file_path = level_path
 	ResourceLoader.load_threaded_request(level_path)
 	var loading: bool = true
 	while(loading):
@@ -29,15 +31,11 @@ func change_level(level_path: String)->void:
 		if(ResourceLoader.load_threaded_get_status(level_path) == ResourceLoader.THREAD_LOAD_FAILED):
 			change_level("res://Level/main_menu.tscn")
 			return
-		
-	current_level = ResourceLoader.load_threaded_get(level_path)
-	add_level()
+
+	add_level(ResourceLoader.load_threaded_get(level_path))
 	GameRoot.remove_child(load_ui)
 	
-func add_level()->void:
-	if(ui_root.get_node_or_null("DeathScreen") != null):
-		ui_root.remove_child(death_screen)
-		
+func add_level(current_level: Resource)->void:
 	if(LevelRoot.get_child_count() > 0):
 		var old_level: Node = LevelRoot.get_child(0)
 		LevelRoot.remove_child(old_level)
@@ -49,6 +47,8 @@ func add_level()->void:
 		ui_root.add_child(pre_level_start)
 	else:
 		player.camera.set_enabled(false)
+	if(ui_root.get_node_or_null("DeathScreen") != null):
+		ui_root.remove_child(death_screen)
 
 func level_start()->void:
 	player.start()
@@ -56,9 +56,8 @@ func level_start()->void:
 	ui_root.remove_child(pre_level_start)
 
 func restart_level()->void:
-	level_started = false
-	add_level()
-	
+	change_level(level_file_path)
+
 func reset_player()->void:
 	player.reset()
 
@@ -67,3 +66,11 @@ func show_death_screen()->void:
 	
 func distance_to_player(from: Node2D)->float:
 	return from.position.distance_to(player.position)
+
+func spawn_enemy(to_add: Array[Node2D], to_loc: Array[Vector2])->void:
+	if(to_add.size()==0):
+		return
+	var target: Node2D = LevelRoot.get_child(0)
+	for i in range(to_add.size()):
+		target.add_child(to_add[i])
+		to_add[i].position = to_loc[i]
