@@ -1,6 +1,6 @@
 extends Node2D
 
-enum TargetLayer{Nothing = 0, World = 1, PlayerCol = 2, HealthHitbox = 4, EnemyCol = 8, DamageHitbox = 16}
+enum TargetLayer{Nothing = 0, World = 1, PlayerCol = 2, PlayerHealthHitbox = 4, EnemyCol = 8, DamageHitbox = 16, EnemyHealthHitbox = 32}
 
 func vec_toward_mouse(from_node: Node2D)->Vector2:
 	var hold_rotation: float = from_node.rotation

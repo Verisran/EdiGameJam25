@@ -32,14 +32,18 @@ func _physics_process(delta: float)->void:
 	if(speed != 0):
 		velocity = direc*speed
 		move_and_slide()
-	var result: Dictionary = PhysicsCast.shape(self, shape, layers)[0]
-	if(cooldown):
-		return
-	if(!result.is_empty()):
-		if(result.collider is BaseKinematic):
-			on_collide_entity(result.collider)
-		if(result.collider is HealthBase):
-			pass
+	if(!cooldown):
+		var results: Array[Dictionary] = PhysicsCast.shape(self, shape, layers, 2, true, true)
+		for result in results:
+			if(result.is_empty()):
+				return
+			if(result.collider is BaseKinematic):
+				on_collide_entity(result.collider)
+				continue
+			if(result.collider is HealthBase):
+				attack(result.collider)
+				continue
+
 func on_collide_entity(target: BaseKinematic)->void:
 	push(target)
 	start_cooldown()
@@ -62,10 +66,6 @@ func push(target: BaseKinematic)->void:
 		PushType.SET_VELOCITY:
 			target.velocity = -transform.y*push_strength
 	pop()
-func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->void:
-	if(use_current_dir):
-		vector = velocity.normalized()
-	velocity += vector*strength
 
 func pull_target(target: Player):
 	target.disabled = true

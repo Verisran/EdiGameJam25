@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjmis435pqcrb"]
+[gd_scene load_steps=11 format=3 uid="uid://cjmis435pqcrb"]
 
 [ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
 [ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
+[ext_resource type="PackedScene" uid="uid://c4cdefbrtm40k" path="res://Health/health.tscn" id="3_6dh2p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1pmw"]
 
@@ -29,6 +30,8 @@ height = 10.0
 radial_segments = 16
 rings = 8
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgaa2"]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 physics_interpolation_mode = 1
 floor_constant_speed = true
@@ -47,6 +50,9 @@ texture = SubResource("GradientTexture1D_al3aj")
 position = Vector2(0, -12)
 mesh = SubResource("SphereMesh_x70a4")
 texture = SubResource("GradientTexture1D_al3aj")
+
+[node name="Health" parent="." instance=ExtResource("3_6dh2p")]
+shape = SubResource("CircleShape2D_mgaa2")
 
 [node name="SmoothCam" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_2bw23")

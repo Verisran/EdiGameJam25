@@ -7,5 +7,10 @@ class_name HealthBase
 func _ready() -> void:
 	my_hitbox.shape = shape
 	
-func take_damage(damage: float):
+func take_damage(damage: float)->void:
 	health -= damage
+	if(health <= 0):
+		die()
+
+func die()->void:
+	print("You Died")
