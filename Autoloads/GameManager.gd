@@ -35,7 +35,7 @@ func change_level(level_path: String)->void:
 	GameRoot.remove_child(load_ui)
 	
 func add_level()->void:
-	if(ui_root.get_node_or_null("You") != null):
+	if(ui_root.get_node_or_null("DeathScreen") != null):
 		ui_root.remove_child(death_screen)
 		
 	if(LevelRoot.get_child_count() > 0):

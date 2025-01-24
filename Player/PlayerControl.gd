@@ -14,7 +14,7 @@ var speed_target: float = speed
 		if(is_on_floor()):
 			return speed_accel 
 		else:
-			return speed_accel * 0.25
+			return speed_accel * 0.1
 @export var speed_decel: float = 0.001:
 	get:
 		if(is_on_floor()):
@@ -128,9 +128,9 @@ func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->v
 		grav_multiplier = 1
 
 func death_seq()->void:
-	await get_tree().create_timer(0.1, false).timeout
-	GameManager.show_death_screen()
+	await get_tree().create_timer(0.01, false).timeout
 	reset()
+	GameManager.show_death_screen()
 
 func reset()->void:
 	disabled = true

@@ -1,19 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://mplsmogvvvc6"]
+[gd_scene load_steps=4 format=3 uid="uid://mplsmogvvvc6"]
 
 [ext_resource type="Script" path="res://UIScenes/Buttons/RestartLevelButton.gd" id="1_23yv5"]
 [ext_resource type="Script" path="res://UIScenes/Buttons/LoadLevel.gd" id="2_11dhw"]
+[ext_resource type="Script" path="res://UIScenes/Buttons/QuitGameButton.gd" id="3_kljws"]
 
-[node name="You" type="ColorRect"]
+[node name="DeathScreen" type="ColorRect"]
 offset_right = 1444.0
 offset_bottom = 810.0
-color = Color(0.396207, 0.0652095, 0.168921, 0.384314)
+color = Color(0.43, 0, 0.043, 0.694118)
 
 [node name="Died" type="Label" parent="."]
 layout_mode = 0
 offset_left = 616.0
-offset_top = 368.0
+offset_top = 72.0
 offset_right = 804.0
-offset_bottom = 423.0
+offset_bottom = 127.0
 theme_override_font_sizes/font_size = 40
 text = "YOU DIED"
 horizontal_alignment = 1
@@ -22,9 +23,9 @@ vertical_alignment = 1
 [node name="RestartLevelButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 512.0
-offset_top = 480.0
+offset_top = 184.0
 offset_right = 896.0
-offset_bottom = 544.0
+offset_bottom = 248.0
 theme_override_font_sizes/font_size = 25
 text = "Restart"
 script = ExtResource("1_23yv5")
@@ -32,10 +33,20 @@ script = ExtResource("1_23yv5")
 [node name="ChangeLevelButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 512.0
-offset_top = 576.0
+offset_top = 280.0
 offset_right = 896.0
-offset_bottom = 640.0
+offset_bottom = 344.0
 theme_override_font_sizes/font_size = 25
 text = "Main Menu"
 script = ExtResource("2_11dhw")
 level_path = "res://Level/main_menu.tscn"
+
+[node name="QuitGameButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 376.0
+offset_right = 896.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+script = ExtResource("3_kljws")
