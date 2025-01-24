@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjmis435pqcrb"]
+[gd_scene load_steps=15 format=3 uid="uid://cjmis435pqcrb"]
 
 [ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
 [ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
@@ -32,11 +32,31 @@ rings = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgaa2"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_cf21m"]
+colors = PackedColorArray(0.114897, 0.114897, 0.114897, 0.494118, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tj6g1"]
+gradient = SubResource("Gradient_cf21m")
+width = 128
+height = 16
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_q0660"]
+colors = PackedColorArray(0.106667, 0.32, 0, 1, 0, 0.916667, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cb00h"]
+gradient = SubResource("Gradient_q0660")
+width = 128
+height = 16
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("health")]
 physics_interpolation_mode = 1
 floor_constant_speed = true
 floor_max_angle = 1.0472
 script = ExtResource("1_t8wne")
+health = NodePath("Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o1pmw")
@@ -51,8 +71,19 @@ position = Vector2(0, -12)
 mesh = SubResource("SphereMesh_x70a4")
 texture = SubResource("GradientTexture1D_al3aj")
 
-[node name="Health" parent="." instance=ExtResource("3_6dh2p")]
+[node name="Health" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_6dh2p")]
+health = 20.0
 shape = SubResource("CircleShape2D_mgaa2")
+health_bar = NodePath("HealthBar")
+
+[node name="HealthBar" type="TextureProgressBar" parent="Health"]
+offset_left = -64.0
+offset_top = 48.0
+offset_right = 192.0
+offset_bottom = 88.0
+value = 100.0
+texture_under = SubResource("GradientTexture2D_tj6g1")
+texture_progress = SubResource("GradientTexture2D_cb00h")
 
 [node name="SmoothCam" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_2bw23")

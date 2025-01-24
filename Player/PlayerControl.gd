@@ -2,6 +2,7 @@ extends BaseKinematic
 class_name Player
 
 @onready var camera: Camera2D = $SmoothCam/Camera2D
+@export var health: HealthBase
 @onready var point: MeshInstance2D = $CollisionShape2D/point
 
 @export var speed: float = 400
@@ -34,7 +35,7 @@ var move_dir: float:
 	get:
 		return Input.get_axis("Left", "Right")
 
-var disabled: bool = false
+var disabled: bool = true
 
 func _ready() -> void:
 	point.top_level = true
@@ -104,7 +105,12 @@ func get_wall_side()->void:
 func wall_slide_down()->void:
 	if(jumps_amt == 0):
 		return
-	velocity.y = clampf(velocity.y, -1024, 128)
+	var clamps: Vector2 = Vector2(-1024, 128)
+	if(Input.is_action_pressed("Down")):
+		clamps.y = 128*2.5
+	elif(Input.is_action_pressed("Up")):
+		clamps.y = 16
+	velocity.y = clampf(velocity.y, clamps.x, clamps.y)
 
 func time_in_air()->void:
 	if(!is_on_floor() and grav_multiplier <= 2.5):
@@ -118,3 +124,17 @@ func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->v
 	velocity += vector*strength
 	if(!is_on_floor()):
 		grav_multiplier = 1
+
+func death_seq()->void:
+	await get_tree().create_timer(0.1, false).timeout
+	reset()
+
+func reset()->void:
+	disabled = true
+	velocity = Vector2.ZERO
+	position = Vector2.ZERO
+	
+
+func start()->void:
+	reset()
+	disabled = false

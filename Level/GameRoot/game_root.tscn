@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://be8uwg3djjkpy"]
+
+[ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="3_awbhi"]
+
+[node name="GameRoot" type="Node"]
+
+[node name="LevelRoot" type="Node2D" parent="."]
+
+[node name="PlayerRoot" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" parent="PlayerRoot" instance=ExtResource("3_awbhi")]
+collision_layer = 2

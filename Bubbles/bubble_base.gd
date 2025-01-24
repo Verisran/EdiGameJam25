@@ -41,6 +41,8 @@ func _physics_process(delta: float)->void:
 				on_collide_entity(result.collider)
 				continue
 			if(result.collider is HealthBase):
+				if(push_mode == PushType.PULL):
+					continue
 				attack(result.collider)
 				continue
 
@@ -62,7 +64,6 @@ func push(target: BaseKinematic)->void:
 				return
 		PushType.AMPLIFY:
 			target.impulse(target.velocity.normalized(), push_strength)
-			
 		PushType.SET_VELOCITY:
 			target.velocity = -transform.y*push_strength
 	pop()
@@ -70,10 +71,11 @@ func push(target: BaseKinematic)->void:
 func pull_target(target: Player):
 	target.disabled = true
 	target.velocity = Vector2.ZERO
-	for i in range(11):
-		if((self.position-target.position).length() < 10):
-			break
+	for i in range(5):
 		target.velocity = (self.position-target.position).normalized()*push_strength*(clampf(i*0.01, 0.05, 0.1))
+		target.health.take_damage(damage*(i*0.1))
+		if((self.position-target.position).length() < 5):
+			target.velocity = Vector2.ZERO
 		await get_tree().create_timer(0.16666, false).timeout
 	target.disabled = false
 	pop()

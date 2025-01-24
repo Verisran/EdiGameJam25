@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://be8uwg3djjkpy"]
+[gd_scene load_steps=11 format=3 uid="uid://bf8ub5li6pm6g"]
 
-[ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="1_5r0le"]
-[ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="2_8ke5u"]
+[ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="1_7ibd7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pay3r"]
 
@@ -24,10 +23,10 @@ size = Vector2(475.5, 36.0003)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbjwt"]
 size = Vector2(932, 40)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x2okt"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lmtl4"]
 radius = 50.0
 
-[node name="GameRoot" type="Node"]
+[node name="DebugLevel" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 176)
@@ -83,21 +82,19 @@ scale = Vector2(932, 40)
 mesh = SubResource("QuadMesh_etj4w")
 texture = SubResource("GradientTexture1D_6r8uy")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_5r0le")]
-collision_layer = 2
-
-[node name="BubbleBase3" parent="." instance=ExtResource("2_8ke5u")]
+[node name="BubbleBase3" parent="." instance=ExtResource("1_7ibd7")]
 position = Vector2(0, 125)
 push_mode = 1
 
-[node name="BubbleBase2" parent="." instance=ExtResource("2_8ke5u")]
+[node name="BubbleBase2" parent="." instance=ExtResource("1_7ibd7")]
 position = Vector2(0, -258)
 rotation = -0.662351
+scale = Vector2(1, 1)
 pop_on_collide = true
 solid = false
 push_mode = 4
 
-[node name="BubbleBase4" parent="." instance=ExtResource("2_8ke5u")]
+[node name="BubbleBase4" parent="." instance=ExtResource("1_7ibd7")]
 position = Vector2(304, 105)
 speed = 250.0
 direc = Vector2(0, -1)
@@ -105,10 +102,10 @@ solid = false
 target_layers = Array[int]([2])
 push_mode = 3
 
-[node name="BubbleBase5" parent="." instance=ExtResource("2_8ke5u")]
+[node name="BubbleBase5" parent="." instance=ExtResource("1_7ibd7")]
 position = Vector2(-176, 0)
 pop_on_collide = true
-shape = SubResource("CircleShape2D_x2okt")
+shape = SubResource("CircleShape2D_lmtl4")
 solid = false
 push_mode = 2
 cooldown_time = 9999.0
