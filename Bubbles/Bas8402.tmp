@@ -22,7 +22,7 @@ shape = SubResource("CircleShape2D_03q0r")
 body_shape = SubResource("CircleShape2D_beypw")
 solid = true
 target_layers = Array[int]([1, 2])
-push_strength = 1500.0
+push_strength = 750.0
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 mesh = SubResource("SphereMesh_10hwh")

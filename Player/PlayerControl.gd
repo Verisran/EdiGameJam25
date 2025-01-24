@@ -4,19 +4,22 @@ class_name Player
 @onready var camera: Camera2D = $SmoothCam/Camera2D
 @onready var point: MeshInstance2D = $CollisionShape2D/point
 
-@export var speed: float = 200:
-	get:
-		if(!is_on_floor()):
-			return speed * air_mult
-		else:
-			return speed
+@export var speed: float = 400
+var speed_target: float = speed
+
 @export var air_mult: float = 1.25
-@export var speed_accel: float = 0.8
-@export var speed_decel: float = 0.25:
+@export var speed_accel: float = 1:
 	get:
-		if(!move_dir):
-			return speed_decel * 0.1
-		return speed_decel
+		if(is_on_floor()):
+			return speed_accel 
+		else:
+			return speed_accel * 0.25
+@export var speed_decel: float = 0.001:
+	get:
+		if(is_on_floor()):
+			return speed_decel*100
+		else:
+			return speed_decel
 @export var wall_vector: Vector2 = Vector2.ZERO
 
 @export var jumps: int = 3
@@ -41,12 +44,20 @@ func _physics_process(_delta: float) -> void:
 	time_in_air()
 	move_and_slide()
 
+func speed_control()->void:
+	var curr_vel: float = Vector2(get_real_velocity().x, 0).length()
+	if(snappedf(speed_target, 0.001) < curr_vel):
+		speed_target = curr_vel - 0.001
+		print(snappedf(speed_target, 0.001)," ", curr_vel)
+	else:
+		speed_target = speed
+
 func velocity_control(direc: float)->void:
+	speed_control()
 	velocity_x_lerped(direc)
 	if not is_on_floor():
 		velocity.y += grav_force*grav_multiplier
 	else:
-
 		jumps_amt = jumps
 
 	if (Input.is_action_just_pressed("Jump") and (is_on_floor() or wall_vector != Vector2.ZERO) and jumps_amt > 0):
@@ -55,11 +66,11 @@ func velocity_control(direc: float)->void:
 		impulse(Vector2.DOWN, jump_force)
 		if(wall_vector):
 			velocity.x = 0
-			impulse(wall_vector, jump_force*0.5)
+			impulse(wall_vector+Vector2(0,0.25), jump_force)
 
 func velocity_x_lerped(direc: float)->void:
 	if(direc):
-		velocity.x = lerpf(velocity.x, speed * direc, speed_accel)
+		velocity.x = lerpf(velocity.x, speed_target * direc, speed_accel)
 	else:
 		velocity.x = lerpf(velocity.x, 0, speed_decel)
 
@@ -98,6 +109,3 @@ func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->v
 	velocity += vector*strength
 	if(!is_on_floor()):
 		grav_multiplier = 1
-
-func amplify(strength: float)->void:
-	velocity = velocity.normalized()*strength
