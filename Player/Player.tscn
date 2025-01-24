@@ -53,6 +53,7 @@ script = ExtResource("2_2bw23")
 target = NodePath("../CollisionShape2D")
 
 [node name="Camera2D" type="Camera2D" parent="SmoothCam"]
+zoom = Vector2(1.25, 1.25)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0

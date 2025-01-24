@@ -34,21 +34,23 @@ var move_dir: float:
 	get:
 		return Input.get_axis("Left", "Right")
 
+var disabled: bool = false
+
 func _ready() -> void:
 	point.top_level = true
 
 func _physics_process(_delta: float) -> void:
-	var direc: float = move_dir
-	get_wall_side()
-	velocity_control(direc)
-	time_in_air()
+	if(!disabled):
+		var direc: float = move_dir
+		get_wall_side()
+		velocity_control(direc)
+		time_in_air()
 	move_and_slide()
 
 func speed_control()->void:
 	var curr_vel: float = Vector2(get_real_velocity().x, 0).length()
-	if(snappedf(speed_target, 0.001) < curr_vel):
+	if(speed_target < curr_vel):
 		speed_target = curr_vel - 0.001
-		print(snappedf(speed_target, 0.001)," ", curr_vel)
 	else:
 		speed_target = speed
 
@@ -81,6 +83,7 @@ func get_wall_side()->void:
 		return
 	var wall_left: Dictionary = PhysicsCast.ray(self, global_position, Vector2.LEFT, 12, PhysicsCast.TargetLayer.World + PhysicsCast.TargetLayer.EnemyCol)
 	if(!wall_left.is_empty()):
+		wall_slide_down()
 		velocity.x = 0
 		point.global_position = wall_left.position
 		wall_vector = -wall_left.normal
@@ -88,6 +91,7 @@ func get_wall_side()->void:
 	
 	var wall_right: Dictionary = PhysicsCast.ray(self, global_position, Vector2.RIGHT, 12, PhysicsCast.TargetLayer.World + PhysicsCast.TargetLayer.EnemyCol)
 	if(!wall_right.is_empty()):
+		wall_slide_down()
 		velocity.x = 0
 		point.global_position = wall_right.position
 		wall_vector = -wall_right.normal
@@ -96,6 +100,11 @@ func get_wall_side()->void:
 	else:
 		point.global_position = self.global_position
 		wall_vector = Vector2.ZERO
+
+func wall_slide_down()->void:
+	if(jumps_amt == 0):
+		return
+	velocity.y = clampf(velocity.y, -1024, 128)
 
 func time_in_air()->void:
 	if(!is_on_floor() and grav_multiplier <= 2.5):

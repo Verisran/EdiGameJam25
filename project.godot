@@ -65,6 +65,6 @@ Slam={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="PlayerCollision"
-2d_physics/layer_3="PlayerHitbox"
+2d_physics/layer_3="HealthHitbox"
 2d_physics/layer_4="EnemyCollision"
-2d_physics/layer_5="EnemyHitbox"
+2d_physics/layer_5="DamageHitbox"

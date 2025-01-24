@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://be8uwg3djjkpy"]
+[gd_scene load_steps=12 format=3 uid="uid://be8uwg3djjkpy"]
 
 [ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="1_5r0le"]
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="2_8ke5u"]
@@ -23,6 +23,9 @@ size = Vector2(475.5, 36.0003)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbjwt"]
 size = Vector2(932, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x2okt"]
+radius = 50.0
 
 [node name="GameRoot" type="Node"]
 
@@ -89,12 +92,23 @@ push_mode = 1
 
 [node name="BubbleBase2" parent="." instance=ExtResource("2_8ke5u")]
 position = Vector2(0, -258)
+rotation = -0.662351
 pop_on_collide = true
 solid = false
 push_mode = 4
-push_direc = Vector2(-1, -1)
 
 [node name="BubbleBase4" parent="." instance=ExtResource("2_8ke5u")]
 position = Vector2(304, 105)
+speed = 250.0
+direc = Vector2(0, -1)
 solid = false
+target_layers = Array[int]([2])
 push_mode = 3
+
+[node name="BubbleBase5" parent="." instance=ExtResource("2_8ke5u")]
+position = Vector2(-176, 0)
+pop_on_collide = true
+shape = SubResource("CircleShape2D_x2okt")
+solid = false
+push_mode = 2
+cooldown_time = 9999.0

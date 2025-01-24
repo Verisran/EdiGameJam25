@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4cdefbrtm40k"]
+
+[ext_resource type="Script" path="res://Health/health.gd" id="1_x8i3p"]
+
+[node name="Health" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_x8i3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
