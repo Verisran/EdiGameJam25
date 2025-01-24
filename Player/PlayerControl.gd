@@ -1,7 +1,7 @@
 extends BaseKinematic
 class_name Player
 
-@onready var camera: Camera2D = $SmoothCam/Camera2D
+@export var camera: Camera2D
 @export var health: HealthBase
 @onready var point: MeshInstance2D = $CollisionShape2D/point
 
@@ -41,6 +41,8 @@ func _ready() -> void:
 	point.top_level = true
 
 func _physics_process(_delta: float) -> void:
+	if(!GameManager.level_started):
+		return
 	if(!disabled):
 		var direc: float = move_dir
 		get_wall_side()
@@ -127,14 +129,17 @@ func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->v
 
 func death_seq()->void:
 	await get_tree().create_timer(0.1, false).timeout
+	GameManager.show_death_screen()
 	reset()
 
 func reset()->void:
 	disabled = true
 	velocity = Vector2.ZERO
 	position = Vector2.ZERO
+	self.visible = false
 	
-
 func start()->void:
 	reset()
+	health.reset_health()
 	disabled = false
+	self.visible = true

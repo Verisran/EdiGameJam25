@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://mplsmogvvvc6"]
+
+[ext_resource type="Script" path="res://UIScenes/Buttons/RestartLevelButton.gd" id="1_23yv5"]
+[ext_resource type="Script" path="res://UIScenes/Buttons/LoadLevel.gd" id="2_11dhw"]
+
+[node name="You" type="ColorRect"]
+offset_right = 1444.0
+offset_bottom = 810.0
+color = Color(0.396207, 0.0652095, 0.168921, 0.384314)
+
+[node name="Died" type="Label" parent="."]
+layout_mode = 0
+offset_left = 616.0
+offset_top = 368.0
+offset_right = 804.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 40
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 480.0
+offset_right = 896.0
+offset_bottom = 544.0
+theme_override_font_sizes/font_size = 25
+text = "Restart"
+script = ExtResource("1_23yv5")
+
+[node name="ChangeLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 576.0
+offset_right = 896.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 25
+text = "Main Menu"
+script = ExtResource("2_11dhw")
+level_path = "res://Level/main_menu.tscn"

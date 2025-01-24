@@ -29,6 +29,8 @@ func _ready() -> void:
 		add_child(collider)
 
 func _physics_process(delta: float)->void:
+	if(GameManager.distance_to_player(self) > 1000 or !GameManager.level_started):
+		return
 	if(speed != 0):
 		velocity = direc*speed
 		move_and_slide()

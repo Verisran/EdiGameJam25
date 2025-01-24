@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ym4uc3uc3sm0"]
+
+[ext_resource type="Script" path="res://UIScenes/Buttons/LoadLevel.gd" id="1_c15tx"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="ChangeLevelButton" type="Button" parent="."]
+offset_left = -576.0
+offset_top = -256.0
+offset_right = -384.0
+offset_bottom = -192.0
+text = "Play!"
+script = ExtResource("1_c15tx")
+
+[node name="OverrideCam" type="Camera2D" parent="."]

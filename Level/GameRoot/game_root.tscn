@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://be8uwg3djjkpy"]
+[gd_scene load_steps=4 format=3 uid="uid://be8uwg3djjkpy"]
 
+[ext_resource type="Script" path="res://Level/GameRoot/Boundary.gd" id="2_chrk2"]
 [ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="3_awbhi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mmj5v"]
 
 [node name="GameRoot" type="Node"]
 
@@ -10,3 +13,17 @@
 
 [node name="CharacterBody2D" parent="PlayerRoot" instance=ExtResource("3_awbhi")]
 collision_layer = 2
+
+[node name="UIRoot" type="CanvasLayer" parent="."]
+
+[node name="WorldDeathBarrier" type="Area2D" parent="."]
+position = Vector2(8, 992)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_chrk2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldDeathBarrier"]
+shape = SubResource("WorldBoundaryShape2D_mmj5v")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[connection signal="body_entered" from="WorldDeathBarrier" to="WorldDeathBarrier" method="_on_body_entered"]

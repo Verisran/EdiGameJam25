@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bhsjfrat4etie"]
+
+[node name="Loading" type="ColorRect"]
+offset_right = 1440.0
+offset_bottom = 810.0
+color = Color(0.230263, 0.510064, 0.549081, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 576.0
+offset_right = 896.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 40
+text = "LOADING"
+horizontal_alignment = 1
+vertical_alignment = 1
