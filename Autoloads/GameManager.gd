@@ -9,10 +9,16 @@ extends Node
 @onready var load_ui: ColorRect = preload("res://UIScenes/loading.tscn").instantiate()
 @onready var pre_level_start: ColorRect = preload("res://UIScenes/pre_level_start.tscn").instantiate()
 @onready var death_screen: ColorRect = preload("res://UIScenes/you_died.tscn").instantiate()
+@onready var pause_menu: ColorRect = ui_root.get_child(0)
 
 #var current_level: Resource
 var level_file_path: String
 var level_started: bool = false
+
+func _input(event: InputEvent) -> void:
+	if(event is InputEventKey):
+		if(Input.is_action_just_pressed("ui_cancel") and level_started):
+			pause_toggle()
 
 func _ready() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
@@ -56,6 +62,7 @@ func level_start()->void:
 	ui_root.remove_child(pre_level_start)
 
 func restart_level()->void:
+	player.reset()
 	change_level(level_file_path)
 
 func reset_player()->void:
@@ -74,3 +81,7 @@ func spawn_enemy(to_add: Array[Node2D], to_loc: Array[Vector2])->void:
 	for i in range(to_add.size()):
 		target.add_child(to_add[i])
 		to_add[i].position = to_loc[i]
+
+func pause_toggle()->void:
+	pause_menu.visible = !get_tree().paused
+	get_tree().paused = !get_tree().paused

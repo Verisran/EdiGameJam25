@@ -16,9 +16,10 @@ var collider: CollisionShape2D
 @export var push_mode: PushType
 @export var push_strength: float
 var cooldown: bool = false
-@export var cooldown_time: float = 0.25
+@export var cooldown_time: float = 0.5
 @export_category("Damage")
 @export var damage: float = 0
+
 
 func _init() -> void:
 	if(solid):
@@ -58,6 +59,8 @@ func attack(target: HealthBase)->void:
 	target.take_damage(damage)
 
 func push(target: BaseKinematic)->void:
+	if(target is Player):
+		target.jumps_amt = target.jumps
 	match push_mode: 
 		PushType.REPEL:
 			target.velocity = Vector2.ZERO

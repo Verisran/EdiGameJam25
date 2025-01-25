@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://mv7nxc5mdlnt"]
+
+[ext_resource type="Script" path="res://UIScenes/Buttons/pause_menu.gd" id="1_no7tg"]
+
+[node name="PauseMenu" type="ColorRect"]
+offset_right = 1440.0
+offset_bottom = 810.0
+color = Color(0, 0.329412, 0.0823529, 0.572549)
+script = ExtResource("1_no7tg")
+
+[node name="Resume" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 224.0
+offset_right = 896.0
+offset_bottom = 288.0
+theme_override_font_sizes/font_size = 25
+text = "Resume"
+
+[node name="RestartLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 320.0
+offset_right = 896.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 25
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 416.0
+offset_right = 896.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 25
+text = "Main Menu"
+
+[node name="QuitGameButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 512.0
+offset_right = 896.0
+offset_bottom = 576.0
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[connection signal="button_up" from="Resume" to="." method="_on_resume_button_up"]
+[connection signal="button_up" from="RestartLevelButton" to="." method="_on_restart_level_button_button_up"]
+[connection signal="button_up" from="MainMenuButton" to="." method="_on_main_menu_button_button_up"]
+[connection signal="button_up" from="QuitGameButton" to="." method="_on_quit_game_button_button_up"]

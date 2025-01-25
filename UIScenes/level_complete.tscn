@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://xs8rv4wmm7b0"]
+
+[node name="LevelComplete" type="ColorRect"]
+offset_right = 1440.0
+offset_bottom = 810.0
+color = Color(0, 0.33, 0.0825, 0.572549)

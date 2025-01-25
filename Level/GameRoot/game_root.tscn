@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://be8uwg3djjkpy"]
+[gd_scene load_steps=5 format=3 uid="uid://be8uwg3djjkpy"]
 
+[ext_resource type="PackedScene" uid="uid://mv7nxc5mdlnt" path="res://UIScenes/pause_menu.tscn" id="2_0rrya"]
 [ext_resource type="Script" path="res://Level/GameRoot/Boundary.gd" id="2_chrk2"]
 [ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="3_awbhi"]
 
@@ -15,6 +16,10 @@
 collision_layer = 2
 
 [node name="UIRoot" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="UIRoot" instance=ExtResource("2_0rrya")]
+process_mode = 2
+visible = false
 
 [node name="WorldDeathBarrier" type="Area2D" parent="."]
 position = Vector2(8, 992)

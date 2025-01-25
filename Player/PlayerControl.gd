@@ -41,7 +41,7 @@ func _ready() -> void:
 	point.top_level = true
 
 func _physics_process(_delta: float) -> void:
-	if(!GameManager.level_started):
+	if(!GameManager.level_started or health.dead):
 		return
 	if(!disabled):
 		var direc: float = move_dir
@@ -66,7 +66,8 @@ func velocity_control(direc: float)->void:
 		jumps_amt = jumps
 
 	if (Input.is_action_just_pressed("Jump") and (is_on_floor() or wall_vector != Vector2.ZERO) and jumps_amt > 0):
-		jumps_amt -= 1
+		if(!is_on_floor()):
+			jumps_amt -= 1
 		velocity.y = 0
 		impulse(Vector2.DOWN, jump_force)
 		if(wall_vector):
@@ -128,7 +129,7 @@ func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->v
 		grav_multiplier = 1
 
 func death_seq()->void:
-	await get_tree().create_timer(0.01, false).timeout
+	#await get_tree().create_timer(0.01, false).timeout
 	reset()
 	GameManager.show_death_screen()
 
