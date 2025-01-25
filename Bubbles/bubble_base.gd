@@ -32,24 +32,40 @@ func _ready() -> void:
 		layers += layer
 	
 func _physics_process(delta: float)->void:
-	if(GameManager.distance_to_player(self) > 1000 or !GameManager.level_started):
+	if(!GameManager.level_started):
 		return
+	if(GameManager.distance_to_player(self) > 1200):
+		queue_free()
+	
+	movement()
+	cast_collision()
+	action()
+
+func movement()->void:
 	if(speed != 0):
 		velocity = direc*speed
 		move_and_slide()
+
+func cast_collision()->void:
 	if(!cooldown):
+		#var queue_pop: bool = false
 		var results: Array[Dictionary] = PhysicsCast.shape(self, shape, layers, 2, true, true)
 		for result in results:
 			if(result.is_empty()):
-				return
+				continue
 			if(result.collider is BaseKinematic):
 				on_collide_entity(result.collider)
 				continue
 			if(result.collider is HealthBase):
+				print("ATTACKING")
 				if(push_mode == PushType.PULL):
 					continue
 				attack(result.collider)
 				continue
+			if(result.collider is Node2D):
+				pop()
+		#if(queue_pop):
+
 
 func on_collide_entity(target: BaseKinematic)->void:
 	push(target)
@@ -57,6 +73,7 @@ func on_collide_entity(target: BaseKinematic)->void:
 
 func attack(target: HealthBase)->void:
 	target.take_damage(damage)
+	pop()
 
 func push(target: BaseKinematic)->void:
 	if(target is Player):
@@ -96,3 +113,14 @@ func pop()->void:
 	if(!pop_on_collide):
 		return
 	self.queue_free()
+
+func action()->void:
+	pass
+
+func start_attack(spd: float, dir: Vector2, start_position: Vector2, dmg: float, inherit_layer: int, pop_collide: bool = true):
+	speed = spd
+	direc = dir
+	position = start_position
+	damage = dmg
+	layers = inherit_layer
+	pop_on_collide = pop_collide

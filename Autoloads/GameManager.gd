@@ -58,9 +58,9 @@ func change_level(level_index: int)->void:
 	
 func add_level(curr_level: Resource)->void:
 	if(LevelRoot.get_child_count() > 0):
-		var old_level: Node = LevelRoot.get_child(0)
-		LevelRoot.remove_child(old_level)
-		old_level.queue_free()
+		for levelChild in LevelRoot.get_children():
+			LevelRoot.remove_child(levelChild)
+			levelChild.queue_free()
 	LevelRoot.add_child(curr_level.instantiate())
 	if(LevelRoot.get_child(0).get_node_or_null("OverrideCam") == null):
 		player.camera.set_enabled(true)
