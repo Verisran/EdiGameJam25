@@ -11,8 +11,10 @@ extends Node
 @onready var death_screen: ColorRect = preload("res://UIScenes/you_died.tscn").instantiate()
 @onready var pause_menu: ColorRect = ui_root.get_child(0)
 
+var levels: Array[String] = ["res://Level/debug_level.tscn", "res://Level/main_menu.tscn"]
+
 #var current_level: Resource
-var level_file_path: String
+var current_level: int
 var level_started: bool = false
 
 func _input(event: InputEvent) -> void:
@@ -23,19 +25,20 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	reset_player()
-	change_level("res://Level/main_menu.tscn")
+	change_level(1)
 
-func change_level(level_path: String)->void:
+func change_level(level_index: int)->void:
 	level_started = false
 	GameRoot.add_child(load_ui)
-	level_file_path = level_path
+	var level_path = levels[level_index]
+	current_level = level_index
 	ResourceLoader.load_threaded_request(level_path)
 	var loading: bool = true
 	while(loading):
 		if(ResourceLoader.load_threaded_get_status(level_path) != ResourceLoader.THREAD_LOAD_LOADED):
 			break
 		if(ResourceLoader.load_threaded_get_status(level_path) == ResourceLoader.THREAD_LOAD_FAILED):
-			change_level("res://Level/main_menu.tscn")
+			change_level(1)
 			return
 
 	add_level(ResourceLoader.load_threaded_get(level_path))
@@ -63,7 +66,7 @@ func level_start()->void:
 
 func restart_level()->void:
 	player.reset()
-	change_level(level_file_path)
+	change_level(current_level)
 
 func reset_player()->void:
 	player.reset()

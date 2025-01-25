@@ -9,7 +9,7 @@ func _on_restart_level_button_button_up() -> void:
 
 func _on_main_menu_button_button_up() -> void:
 	GameManager.pause_toggle()
-	GameManager.change_level("res://Level/main_menu.tscn")
+	GameManager.change_level(1)
 	GameManager.player.reset()
 
 func _on_quit_game_button_button_up() -> void:
