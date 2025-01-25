@@ -27,6 +27,7 @@ text = "Quit"
 script = ExtResource("2_r2d73")
 
 [node name="LevelSelector" parent="." node_paths=PackedStringArray("main_menu_btn") instance=ExtResource("2_fwqoi")]
+visible = false
 main_menu_btn = NodePath("../Buttons")
 
 [node name="Back" type="Button" parent="LevelSelector"]
