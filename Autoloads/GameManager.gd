@@ -1,5 +1,6 @@
 extends Node
 
+@onready var tree: SceneTree = get_tree()
 @onready var GameRoot: Node = get_tree().get_root().get_node("GameRoot")
 @onready var LevelRoot: Node2D = GameRoot.get_child(0)
 @onready var PlayerRoot: Node2D = GameRoot.get_child(1)
@@ -10,12 +11,16 @@ extends Node
 @onready var pre_level_start: ColorRect = preload("res://UIScenes/pre_level_start.tscn").instantiate()
 @onready var death_screen: ColorRect = preload("res://UIScenes/you_died.tscn").instantiate()
 @onready var pause_menu: ColorRect = ui_root.get_child(0)
+@onready var level_complete_ui: ColorRect = preload("res://UIScenes/level_complete.tscn").instantiate()
 
 var levels: Array[String] = ["res://Level/debug_level.tscn", "res://Level/main_menu.tscn", "res://Level/level_1.tscn", "res://Level/level_2.tscn"]
 var completion: Array[bool]
 #var current_level: Resource
 var current_level: int
 var level_started: bool = false
+
+var level_time: float = 0
+var start_timer: bool = false
 
 func _input(event: InputEvent) -> void:
 	if(event is InputEventKey):
@@ -28,6 +33,11 @@ func _ready() -> void:
 	reset_player()
 	change_level(1)
 
+func _process(delta: float) -> void:
+	if(start_timer and !tree.paused):
+		level_time += delta
+
+#region Level Controls
 func change_level(level_index: int)->void:
 	if(level_index > levels.size()-1):
 		return
@@ -65,6 +75,19 @@ func level_start()->void:
 	player.start()
 	level_started = true
 	ui_root.remove_child(pre_level_start)
+	level_time = 0
+	start_timer = true
+	print(level_time)
+	
+func set_level_complete()->void:
+	start_timer = false
+	completion[current_level] = true
+	save_completion()
+	level_complete_seq()
+	
+func level_complete_seq()->void:
+	ui_root.add_child(level_complete_ui)
+	player.reset()
 
 func restart_level()->void:
 	player.reset()
@@ -73,12 +96,18 @@ func restart_level()->void:
 func reset_player()->void:
 	player.reset()
 
+func pause_toggle()->void:
+	pause_menu.visible = !get_tree().paused
+	get_tree().paused = !get_tree().paused
+	
 func show_death_screen()->void:
 	ui_root.add_child(death_screen)
-	
+#endregion
+
 func distance_to_player(from: Node2D)->float:
 	return from.position.distance_to(player.position)
 
+#region Spawning
 func spawn_enemy(to_add: Array[Node2D], to_loc: Array[Vector2])->void:
 	if(to_add.size()==0):
 		return
@@ -86,19 +115,9 @@ func spawn_enemy(to_add: Array[Node2D], to_loc: Array[Vector2])->void:
 	for i in range(to_add.size()):
 		target.add_child(to_add[i])
 		to_add[i].position = to_loc[i]
+#endregion
 
-func pause_toggle()->void:
-	pause_menu.visible = !get_tree().paused
-	get_tree().paused = !get_tree().paused
-
-func set_level_complete()->void:
-	completion[current_level] = true
-	save_completion()
-	level_complete_seq()
-	
-func level_complete_seq()->void:
-	pass
-
+#region Saving
 var save_path: String = "user://Completion/levelcompletion.save"
 signal completionLoaded
 
@@ -130,3 +149,4 @@ func load_completion(force_default: bool = false)->void:
 	save_file.close()
 	completionLoaded.emit()
 	print(completion)
+#endregion

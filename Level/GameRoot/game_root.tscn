@@ -19,10 +19,9 @@ collision_layer = 2
 
 [node name="PauseMenu" parent="UIRoot" instance=ExtResource("2_0rrya")]
 process_mode = 2
-visible = false
 
 [node name="WorldDeathBarrier" type="Area2D" parent="."]
-position = Vector2(8, 992)
+position = Vector2(8, 2272)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_chrk2")

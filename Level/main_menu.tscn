@@ -12,36 +12,35 @@ metadata/_edit_lock_ = true
 [node name="Buttons" type="CanvasLayer" parent="."]
 
 [node name="PlayButton" type="Button" parent="Buttons"]
-offset_left = 128.0
-offset_top = 128.0
-offset_right = 320.0
-offset_bottom = 192.0
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 256.0
 text = "Levels"
 
 [node name="QuitGameButton" type="Button" parent="Buttons"]
-offset_left = 128.0
-offset_top = 576.0
-offset_right = 320.0
-offset_bottom = 640.0
+offset_left = 192.0
+offset_top = 832.0
+offset_right = 384.0
+offset_bottom = 896.0
 text = "Quit"
 script = ExtResource("2_r2d73")
 
 [node name="LevelSelector" parent="." node_paths=PackedStringArray("main_menu_btn") instance=ExtResource("2_fwqoi")]
-visible = false
 main_menu_btn = NodePath("../Buttons")
 
 [node name="Back" type="Button" parent="LevelSelector"]
-offset_left = 704.0
-offset_top = 640.0
-offset_right = 896.0
-offset_bottom = 704.0
+offset_left = 1536.0
+offset_top = 832.0
+offset_right = 1728.0
+offset_bottom = 896.0
 text = "Back"
 
 [node name="ResetProgress" type="Button" parent="LevelSelector"]
-offset_left = 128.0
-offset_top = 720.0
-offset_right = 384.0
-offset_bottom = 752.0
+offset_left = 192.0
+offset_top = 904.0
+offset_right = 448.0
+offset_bottom = 936.0
 text = "Reset progression (no revert)"
 
 [connection signal="button_up" from="Buttons/PlayButton" to="LevelSelector" method="_on_play_button_button_up"]

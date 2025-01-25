@@ -4,13 +4,14 @@
 [ext_resource type="Script" path="res://UIScenes/Buttons/LoadLevel.gd" id="2_viprc"]
 
 [node name="LevelSelector" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_7ybn2")
 
 [node name="ButtonHolder" type="ColorRect" parent="."]
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 976.0
-offset_bottom = 768.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 1792.0
+offset_bottom = 960.0
 color = Color(0, 0.329412, 0.0823529, 0.572549)
 
 [node name="level1" type="Button" parent="ButtonHolder"]
@@ -35,9 +36,9 @@ level_index = 1
 [node name="DebugLevel" type="Button" parent="ButtonHolder"]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 576.0
+offset_top = 704.0
 offset_right = 256.0
-offset_bottom = 640.0
+offset_bottom = 768.0
 text = "DebugLevel"
 script = ExtResource("2_viprc")
 level_index = -2

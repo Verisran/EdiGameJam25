@@ -5,16 +5,16 @@
 [ext_resource type="Script" path="res://UIScenes/Buttons/QuitGameButton.gd" id="3_kljws"]
 
 [node name="DeathScreen" type="ColorRect"]
-offset_right = 1444.0
-offset_bottom = 810.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 color = Color(0.43, 0, 0.043, 0.694118)
 
 [node name="Died" type="Label" parent="."]
 layout_mode = 0
-offset_left = 616.0
-offset_top = 72.0
-offset_right = 804.0
-offset_bottom = 127.0
+offset_left = 904.0
+offset_top = 336.0
+offset_right = 1092.0
+offset_bottom = 391.0
 theme_override_font_sizes/font_size = 40
 text = "YOU DIED"
 horizontal_alignment = 1
@@ -22,20 +22,20 @@ vertical_alignment = 1
 
 [node name="RestartLevelButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 184.0
-offset_right = 896.0
-offset_bottom = 248.0
+offset_left = 800.0
+offset_top = 448.0
+offset_right = 1184.0
+offset_bottom = 512.0
 theme_override_font_sizes/font_size = 25
 text = "Restart"
 script = ExtResource("1_23yv5")
 
 [node name="ChangeLevelButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 280.0
-offset_right = 896.0
-offset_bottom = 344.0
+offset_left = 800.0
+offset_top = 544.0
+offset_right = 1184.0
+offset_bottom = 608.0
 theme_override_font_sizes/font_size = 25
 text = "Main Menu"
 script = ExtResource("2_11dhw")
@@ -43,10 +43,10 @@ level_index = 1
 
 [node name="QuitGameButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 376.0
-offset_right = 896.0
-offset_bottom = 440.0
+offset_left = 800.0
+offset_top = 640.0
+offset_right = 1184.0
+offset_bottom = 704.0
 theme_override_font_sizes/font_size = 25
 text = "Quit"
 script = ExtResource("3_kljws")

@@ -10,4 +10,5 @@ radius = 256.5
 [node name="LevelComplete" parent="." instance=ExtResource("1_gt7p1")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelComplete"]
+position = Vector2(0, 1384)
 shape = SubResource("CircleShape2D_c72pk")

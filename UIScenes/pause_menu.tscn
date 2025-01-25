@@ -3,8 +3,11 @@
 [ext_resource type="Script" path="res://UIScenes/Buttons/pause_menu.gd" id="1_no7tg"]
 
 [node name="PauseMenu" type="ColorRect"]
-offset_right = 1440.0
-offset_bottom = 810.0
+visible = false
+offset_left = 240.0
+offset_top = 128.0
+offset_right = 1680.0
+offset_bottom = 938.0
 color = Color(0, 0.329412, 0.0823529, 0.572549)
 script = ExtResource("1_no7tg")
 

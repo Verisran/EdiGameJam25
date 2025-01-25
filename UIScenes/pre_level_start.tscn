@@ -3,16 +3,16 @@
 [ext_resource type="Script" path="res://UIScenes/Buttons/StartLevelButton.gd" id="1_mac08"]
 
 [node name="PreLevelStart" type="ColorRect"]
-offset_right = 1440.0
-offset_bottom = 810.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 color = Color(3.60981e-07, 0.357194, 0.430837, 0.298039)
 
 [node name="StartLevelButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 576.0
-offset_top = 384.0
-offset_right = 896.0
-offset_bottom = 448.0
+offset_left = 800.0
+offset_top = 576.0
+offset_right = 1120.0
+offset_bottom = 640.0
 theme_override_font_sizes/font_size = 25
 text = "Begin"
 script = ExtResource("1_mac08")
