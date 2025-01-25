@@ -1,25 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://ym4uc3uc3sm0"]
+[gd_scene load_steps=3 format=3 uid="uid://ym4uc3uc3sm0"]
 
+[ext_resource type="PackedScene" uid="uid://57qw5b4b1fr3" path="res://UIScenes/level_selector.tscn" id="2_fwqoi"]
 [ext_resource type="Script" path="res://UIScenes/Buttons/QuitGameButton.gd" id="2_r2d73"]
 
 [node name="MainMenu" type="Node2D"]
 
 [node name="OverrideCam" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Buttons" type="CanvasLayer" parent="."]
 
-[node name="PlayButton" type="Button" parent="CanvasLayer"]
-offset_left = -576.0
-offset_right = -384.0
-offset_bottom = 64.0
-text = "Play!"
+[node name="PlayButton" type="Button" parent="Buttons"]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 320.0
+offset_bottom = 192.0
+text = "Levels"
 
-[node name="QuitGameButton" type="Button" parent="CanvasLayer"]
-offset_left = -576.0
-offset_top = 256.0
-offset_right = -384.0
-offset_bottom = 319.0
+[node name="QuitGameButton" type="Button" parent="Buttons"]
+offset_left = 128.0
+offset_top = 576.0
+offset_right = 320.0
+offset_bottom = 640.0
 text = "Quit"
 script = ExtResource("2_r2d73")
 
-[node name="LevelSelector" type="CanvasLayer" parent="."]
+[node name="LevelSelector" parent="." node_paths=PackedStringArray("main_menu_btn") instance=ExtResource("2_fwqoi")]
+main_menu_btn = NodePath("../Buttons")
+
+[node name="Back" type="Button" parent="LevelSelector"]
+offset_left = 704.0
+offset_top = 640.0
+offset_right = 896.0
+offset_bottom = 704.0
+text = "Back"
+
+[node name="ResetProgress" type="Button" parent="LevelSelector"]
+offset_left = 128.0
+offset_top = 720.0
+offset_right = 384.0
+offset_bottom = 752.0
+text = "Reset progression (no revert)"
+
+[connection signal="button_up" from="Buttons/PlayButton" to="LevelSelector" method="_on_play_button_button_up"]
+[connection signal="button_up" from="LevelSelector/Back" to="LevelSelector" method="_on_back_button_up"]
+[connection signal="button_up" from="LevelSelector/ResetProgress" to="LevelSelector" method="_on_reset_progress_button_up"]

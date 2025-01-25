@@ -11,7 +11,7 @@ extends Node
 @onready var death_screen: ColorRect = preload("res://UIScenes/you_died.tscn").instantiate()
 @onready var pause_menu: ColorRect = ui_root.get_child(0)
 
-var levels: Array[String] = ["res://Level/debug_level.tscn", "res://Level/main_menu.tscn"]
+var levels: Array[String] = ["res://Level/debug_level.tscn", "res://Level/main_menu.tscn", "res://Level/level_1.tscn", "res://Level/level_2.tscn"]
 var completion: Array[bool]
 #var current_level: Resource
 var current_level: int
@@ -100,22 +100,27 @@ func level_complete_seq()->void:
 	pass
 
 var save_path: String = "user://Completion/levelcompletion.save"
+signal completionLoaded
 
 func default_completion()->void:
 	var dir: DirAccess = DirAccess.open("user://")
-	dir.make_dir("Completion")
+	if(!dir.dir_exists("Completion")):
+		dir.make_dir("Completion")
 	var save_file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
-	save_file.store_var([false, true], true)
+	var generate: Array[bool] = [true, true]
+	for i in range(levels.size()):
+		if(i>1):
+			generate.append(false)
+	save_file.store_var(generate, true)
 	save_file.close()
 
 func save_completion()->void:
 	var save_file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
 	save_file.store_var(completion, false)
 	save_file.close()
-	print(completion)
 
-func load_completion()->void:
-	if(!FileAccess.file_exists(save_path)):
+func load_completion(force_default: bool = false)->void:
+	if(force_default or !FileAccess.file_exists(save_path)):
 		default_completion()
 	var save_file: FileAccess = FileAccess.open(save_path, FileAccess.READ)
 	completion.clear()
@@ -123,3 +128,5 @@ func load_completion()->void:
 	for item in temp:
 		completion.append(item)
 	save_file.close()
+	completionLoaded.emit()
+	print(completion)

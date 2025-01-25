@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4elvcxkva6mi"]
+
+[ext_resource type="PackedScene" uid="uid://dwmnnfxhda3rk" path="res://Level/Trigger/level_complete.tscn" id="1_gt7p1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c72pk"]
+radius = 256.5
+
+[node name="Level1" type="Node2D"]
+
+[node name="LevelComplete" parent="." instance=ExtResource("1_gt7p1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelComplete"]
+shape = SubResource("CircleShape2D_c72pk")
