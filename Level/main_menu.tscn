@@ -1,24 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://ym4uc3uc3sm0"]
+[gd_scene load_steps=2 format=3 uid="uid://ym4uc3uc3sm0"]
 
-[ext_resource type="Script" path="res://UIScenes/Buttons/LoadLevel.gd" id="1_c15tx"]
 [ext_resource type="Script" path="res://UIScenes/Buttons/QuitGameButton.gd" id="2_r2d73"]
 
 [node name="MainMenu" type="Node2D"]
 
-[node name="ChangeLevelButton" type="Button" parent="."]
-offset_left = -576.0
-offset_top = -256.0
-offset_right = -384.0
-offset_bottom = -192.0
-text = "Play!"
-script = ExtResource("1_c15tx")
+[node name="OverrideCam" type="Camera2D" parent="."]
 
-[node name="QuitGameButton" type="Button" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
 offset_left = -576.0
-offset_top = -128.0
 offset_right = -384.0
-offset_bottom = -65.0
+offset_bottom = 64.0
+text = "Play!"
+
+[node name="QuitGameButton" type="Button" parent="CanvasLayer"]
+offset_left = -576.0
+offset_top = 256.0
+offset_right = -384.0
+offset_bottom = 319.0
 text = "Quit"
 script = ExtResource("2_r2d73")
 
-[node name="OverrideCam" type="Camera2D" parent="."]
+[node name="LevelSelector" type="CanvasLayer" parent="."]

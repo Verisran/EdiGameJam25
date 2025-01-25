@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bf8ub5li6pm6g"]
+[gd_scene load_steps=15 format=3 uid="uid://bf8ub5li6pm6g"]
 
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="1_7ibd7"]
 [ext_resource type="Script" path="res://Level/Trigger/Scripts/SpawnTrigger.gd" id="2_3itwu"]
+[ext_resource type="PackedScene" uid="uid://dwmnnfxhda3rk" path="res://Level/Trigger/level_complete.tscn" id="3_fn8o6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pay3r"]
 
@@ -29,6 +30,9 @@ radius = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3s3ng"]
 size = Vector2(224, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i3jm"]
+size = Vector2(208, 162)
 
 [node name="DebugLevel" type="Node2D"]
 
@@ -86,6 +90,18 @@ scale = Vector2(932, 40)
 mesh = SubResource("QuadMesh_etj4w")
 texture = SubResource("GradientTexture1D_6r8uy")
 
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(-912, 176)
+physics_material_override = SubResource("PhysicsMaterial_pay3r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+shape = SubResource("RectangleShape2D_gbjwt")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D5"]
+scale = Vector2(932, 40)
+mesh = SubResource("QuadMesh_etj4w")
+texture = SubResource("GradientTexture1D_6r8uy")
+
 [node name="BubbleBase3" parent="." instance=ExtResource("1_7ibd7")]
 position = Vector2(0, 125)
 push_mode = 1
@@ -123,3 +139,10 @@ spawn_loc = Array[Vector2]([Vector2(50, -100), Vector2(-100, 100), Vector2(150, 
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnTrigger"]
 shape = SubResource("RectangleShape2D_3s3ng")
+
+[node name="LevelComplete" parent="." instance=ExtResource("3_fn8o6")]
+position = Vector2(-551, 114)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelComplete"]
+position = Vector2(-36, -40)
+shape = SubResource("RectangleShape2D_0i3jm")

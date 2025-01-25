@@ -12,6 +12,8 @@ config_version=5
 
 config/name="BubbleBound"
 run/main_scene="res://Level/GameRoot/game_root.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="VERISANBubbleGame"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -38,9 +40,12 @@ folder_colors={
 "res://Bubbles/": "green",
 "res://Health/": "yellow",
 "res://Level/": "orange",
+"res://Level/GameRoot/": "blue",
+"res://Level/Trigger/": "teal",
 "res://Player/": "red",
 "res://PlayerWeapon/": "blue",
-"res://UIScenes/": "teal"
+"res://UIScenes/": "teal",
+"res://UIScenes/Buttons/": "green"
 }
 
 [input]
