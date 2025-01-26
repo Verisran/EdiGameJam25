@@ -1,46 +1,75 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjmis435pqcrb"]
+[gd_scene load_steps=12 format=3 uid="uid://cjmis435pqcrb"]
 
 [ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
 [ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
+[ext_resource type="Texture2D" uid="uid://d2xg031buy5hu" path="res://@Textures/Player.png" id="2_p4yyx"]
+[ext_resource type="PackedScene" uid="uid://c4cdefbrtm40k" path="res://Health/health.tscn" id="3_6dh2p"]
+[ext_resource type="AudioStream" uid="uid://b3mikyrmlobax" path="res://Sounds/jump.wav" id="3_hp52a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1pmw"]
+radius = 16.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcemc"]
-shading_mode = 0
-albedo_color = Color(0.898039, 0.133333, 0.133333, 1)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgaa2"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_bppwt"]
-material = SubResource("StandardMaterial3D_jcemc")
-radius = 10.0
-height = 20.0
-radial_segments = 16
-rings = 8
+[sub_resource type="Gradient" id="Gradient_cf21m"]
+colors = PackedColorArray(0.114897, 0.114897, 0.114897, 0.494118, 1, 1, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_2kr5u"]
-colors = PackedColorArray(0.972549, 0, 0, 1, 0.972549, 0, 0, 1)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tj6g1"]
+gradient = SubResource("Gradient_cf21m")
+width = 128
+height = 16
+fill_to = Vector2(0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_al3aj"]
-gradient = SubResource("Gradient_2kr5u")
+[sub_resource type="Gradient" id="Gradient_q0660"]
+colors = PackedColorArray(0.106667, 0.32, 0, 1, 0, 0.916667, 1, 1)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cb00h"]
+gradient = SubResource("Gradient_q0660")
+width = 128
+height = 16
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "health")]
 physics_interpolation_mode = 1
 floor_constant_speed = true
+floor_max_angle = 1.0472
 script = ExtResource("1_t8wne")
+camera = NodePath("SmoothCam/Camera2D")
+health = NodePath("Health")
+jumps = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o1pmw")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
-position = Vector2(0, 1.90735e-06)
-mesh = SubResource("SphereMesh_bppwt")
-texture = SubResource("GradientTexture1D_al3aj")
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture = ExtResource("2_p4yyx")
+
+[node name="JumpAudio" type="AudioStreamPlayer" parent="CollisionShape2D"]
+stream = ExtResource("3_hp52a")
+volume_db = -12.28
+
+[node name="Health" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_6dh2p")]
+health = 20.0
+shape = SubResource("CircleShape2D_mgaa2")
+health_bar = NodePath("HealthBar")
+
+[node name="HealthBar" type="TextureProgressBar" parent="Health"]
+offset_left = -64.0
+offset_top = 48.0
+offset_right = 192.0
+offset_bottom = 88.0
+value = 100.0
+texture_under = SubResource("GradientTexture2D_tj6g1")
+texture_progress = SubResource("GradientTexture2D_cb00h")
 
 [node name="SmoothCam" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_2bw23")
 target = NodePath("../CollisionShape2D")
 
 [node name="Camera2D" type="Camera2D" parent="SmoothCam"]
-zoom = Vector2(2, 2)
+enabled = false
+zoom = Vector2(1.5, 1.5)
 process_callback = 0
 position_smoothing_enabled = true
-position_smoothing_speed = 15.0
+position_smoothing_speed = 20.0

@@ -10,14 +10,46 @@ config_version=5
 
 [application]
 
-config/name="BubbleBound"
-run/main_scene="res://Level/game_root.tscn"
+config/name="BubbleBorne"
+run/main_scene="res://Level/GameRoot/game_root.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="VERISANBubbleGame"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://@Imported/IconBubble.png"
+
+[autoload]
+
+GameManager="*res://Autoloads/GameManager.gd"
+PhysicsCast="*res://Autoloads/ShortPhysics.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/resizable=false
+window/size/window_width_override=1440
+window/size/window_height_override=810
+window/stretch/mode="viewport"
 
 [dotnet]
 
 project/assembly_name="BubbleBound"
+
+[file_customization]
+
+folder_colors={
+"res://@Textures/": "pink",
+"res://Autoloads/": "blue",
+"res://BaseNodes/": "teal",
+"res://Bubbles/": "green",
+"res://Health/": "yellow",
+"res://Level/": "orange",
+"res://Level/GameRoot/": "blue",
+"res://Level/Trigger/": "teal",
+"res://Player/": "red",
+"res://UIScenes/": "teal",
+"res://UIScenes/Buttons/": "green"
+}
 
 [input]
 
@@ -46,8 +78,22 @@ Jump={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
-Slam={
+Action1={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="PlayerCollision"
+2d_physics/layer_3="PlayerHealthHitbox"
+2d_physics/layer_4="EnemyCollision"
+2d_physics/layer_5="DamageHitbox"
+2d_physics/layer_6="EnemyHealthHitbox"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

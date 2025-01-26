@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://xs8rv4wmm7b0"]
+
+[ext_resource type="Script" path="res://UIScenes/level_complete.gd" id="1_sol74"]
+
+[node name="LevelComplete" type="ColorRect"]
+process_mode = 3
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0.33, 0.0825, 0.572549)
+script = ExtResource("1_sol74")
+
+[node name="NextLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 960.0
+offset_right = 384.0
+offset_bottom = 1024.0
+theme_override_font_sizes/font_size = 25
+text = "Continue"
+
+[node name="MenuButton" type="Button" parent="."]
+offset_left = 512.0
+offset_top = 960.0
+offset_right = 768.0
+offset_bottom = 1024.0
+theme_override_font_sizes/font_size = 25
+text = "Main Menu"
+
+[node name="Darken" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 1792.0
+offset_bottom = 896.0
+color = Color(0.14, 0.14, 0.14, 0.419608)
+
+[node name="Time" type="Label" parent="Darken"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = "Time:"
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="Darken"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 320.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 40
+text = "Score"
+vertical_alignment = 1
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="tree_entered" from="Darken/Time" to="." method="_on_time_tree_entered"]
