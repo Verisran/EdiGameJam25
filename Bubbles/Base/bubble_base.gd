@@ -116,5 +116,4 @@ func start_attack(spd: float, dir: Vector2, start_position: Vector2, dmg: float,
 	position = start_position
 	damage = dmg
 	layers = inherit_layer
-	print("set: ", layers)
 	pop_on_collide = pop_collide

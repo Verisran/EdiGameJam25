@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjmis435pqcrb"]
+[gd_scene load_steps=11 format=3 uid="uid://cjmis435pqcrb"]
 
 [ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
 [ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
@@ -6,23 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c4cdefbrtm40k" path="res://Health/health.tscn" id="3_6dh2p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1pmw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcemc"]
-shading_mode = 0
-albedo_color = Color(0.898039, 0.133333, 0.133333, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_x70a4"]
-material = SubResource("StandardMaterial3D_jcemc")
-radius = 5.0
-height = 10.0
-radial_segments = 16
-rings = 8
-
-[sub_resource type="Gradient" id="Gradient_2kr5u"]
-colors = PackedColorArray(0.972549, 0, 0, 1, 0.972549, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_al3aj"]
-gradient = SubResource("Gradient_2kr5u")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgaa2"]
 
@@ -58,12 +41,6 @@ shape = SubResource("CircleShape2D_o1pmw")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture = ExtResource("2_p4yyx")
-
-[node name="point" type="MeshInstance2D" parent="CollisionShape2D"]
-visible = false
-position = Vector2(0, -12)
-mesh = SubResource("SphereMesh_x70a4")
-texture = SubResource("GradientTexture1D_al3aj")
 
 [node name="Health" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_6dh2p")]
 health = 20.0

@@ -47,7 +47,6 @@ folder_colors={
 "res://Level/GameRoot/": "blue",
 "res://Level/Trigger/": "teal",
 "res://Player/": "red",
-"res://PlayerWeapon/": "blue",
 "res://UIScenes/": "teal",
 "res://UIScenes/Buttons/": "green"
 }

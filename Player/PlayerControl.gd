@@ -3,8 +3,6 @@ class_name Player
 
 @export var camera: Camera2D
 @export var health: HealthBase
-@onready var point: MeshInstance2D = $CollisionShape2D/point
-
 @export var speed: float = 400
 var speed_target: float = speed
 
@@ -36,9 +34,6 @@ var move_dir: float:
 		return Input.get_axis("Left", "Right")
 
 var disabled: bool = true
-
-func _ready() -> void:
-	point.top_level = true
 
 func _physics_process(_delta: float) -> void:
 	if(!GameManager.level_started or health.dead):
@@ -82,14 +77,12 @@ func velocity_x_lerped(direc: float)->void:
 
 func get_wall_side()->void:
 	if(is_on_floor()):
-		point.global_position = self.global_position
 		wall_vector = Vector2.ZERO
 		return
 	var wall_left: Dictionary = PhysicsCast.ray(self, global_position, Vector2.LEFT, 12, PhysicsCast.TargetLayer.World + PhysicsCast.TargetLayer.EnemyCol)
 	if(!wall_left.is_empty()):
 		wall_slide_down()
 		velocity.x = 0
-		point.global_position = wall_left.position
 		wall_vector = -wall_left.normal
 		return
 	
@@ -97,12 +90,10 @@ func get_wall_side()->void:
 	if(!wall_right.is_empty()):
 		wall_slide_down()
 		velocity.x = 0
-		point.global_position = wall_right.position
 		wall_vector = -wall_right.normal
 		return
 	
 	else:
-		point.global_position = self.global_position
 		wall_vector = Vector2.ZERO
 
 func wall_slide_down()->void:
