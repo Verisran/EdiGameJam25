@@ -7,6 +7,7 @@
 
 [node name="OverrideCam" type="Camera2D" parent="."]
 anchor_mode = 0
+process_callback = 0
 metadata/_edit_lock_ = true
 
 [node name="Buttons" type="CanvasLayer" parent="."]

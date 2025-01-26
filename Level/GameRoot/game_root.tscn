@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://be8uwg3djjkpy"]
+[gd_scene load_steps=6 format=3 uid="uid://be8uwg3djjkpy"]
 
+[ext_resource type="Texture2D" uid="uid://dmpqrotm16taa" path="res://@Textures/Background.png" id="1_6rsfg"]
 [ext_resource type="PackedScene" uid="uid://mv7nxc5mdlnt" path="res://UIScenes/pause_menu.tscn" id="2_0rrya"]
 [ext_resource type="Script" path="res://Level/GameRoot/Boundary.gd" id="2_chrk2"]
 [ext_resource type="PackedScene" uid="uid://cjmis435pqcrb" path="res://Player/Player.tscn" id="3_awbhi"]
@@ -30,8 +31,17 @@ script = ExtResource("2_chrk2")
 shape = SubResource("WorldBoundaryShape2D_mmj5v")
 debug_color = Color(0, 0.595, 0.7, 1)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-visible = false
-motion_scale = Vector2(0, 1)
+[node name="ParallaxLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.75, 0.75)
+scroll_offset = Vector2(664, 40)
+repeat_size = Vector2(1, 1)
+autoscroll = Vector2(2, 2)
+repeat_times = 2
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+z_index = -3
+position = Vector2(960, 536)
+texture = ExtResource("1_6rsfg")
+offset = Vector2(1.18, 6.36)
 
 [connection signal="body_entered" from="WorldDeathBarrier" to="WorldDeathBarrier" method="_on_body_entered"]
