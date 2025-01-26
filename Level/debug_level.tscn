@@ -1,9 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bf8ub5li6pm6g"]
+[gd_scene load_steps=18 format=3 uid="uid://bf8ub5li6pm6g"]
 
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="1_7ibd7"]
 [ext_resource type="Script" path="res://Level/Trigger/Scripts/SpawnTrigger.gd" id="2_3itwu"]
+[ext_resource type="PackedScene" uid="uid://deespu2ab7pfb" path="res://Bubbles/BubbleAmplify.tscn" id="2_e3ktu"]
 [ext_resource type="PackedScene" uid="uid://434d5oiw35e6" path="res://Bubbles/VoidBubble.tscn" id="2_ttlug"]
 [ext_resource type="PackedScene" uid="uid://dwmnnfxhda3rk" path="res://Level/Trigger/level_complete.tscn" id="3_fn8o6"]
+[ext_resource type="PackedScene" uid="uid://buriwqa64bk40" path="res://Bubbles/BubbleRepel.tscn" id="6_ug8ja"]
+[ext_resource type="PackedScene" uid="uid://besikam6evusf" path="res://Bubbles/BubbleSetV.tscn" id="7_kipxp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pay3r"]
 
@@ -100,24 +103,18 @@ scale = Vector2(932, 40)
 mesh = SubResource("QuadMesh_etj4w")
 texture = SubResource("GradientTexture1D_6r8uy")
 
-[node name="BubbleBase3" parent="." instance=ExtResource("1_7ibd7")]
-position = Vector2(0, 125)
-push_mode = 1
+[node name="BubbleSetVel" parent="." instance=ExtResource("7_kipxp")]
+position = Vector2(0, -256)
+rotation = -0.523598
 
-[node name="BubbleBase2" parent="." instance=ExtResource("1_7ibd7")]
-position = Vector2(0, -258)
-rotation = -0.662351
-pop_on_collide = true
-solid = false
-push_mode = 4
+[node name="BubbleRepel" parent="." instance=ExtResource("6_ug8ja")]
+position = Vector2(0, 120)
 
-[node name="BubbleBase4" parent="." instance=ExtResource("1_7ibd7")]
-position = Vector2(304, 105)
-speed = 250.0
+[node name="BubbleAmp" parent="." instance=ExtResource("2_e3ktu")]
+position = Vector2(320, 112)
+speed = 75.0
 direc = Vector2(0, -1)
-solid = false
-target_layers = Array[int]([2])
-push_mode = 3
+damage = 1.0
 
 [node name="VoidBubble" parent="." instance=ExtResource("2_ttlug")]
 position = Vector2(-176, 0)

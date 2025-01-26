@@ -1,25 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://fu244ak5fa8o"]
+[gd_scene load_steps=4 format=3 uid="uid://fu244ak5fa8o"]
 
-[ext_resource type="Script" path="res://Bubbles/bubble_base.gd" id="1_yts1p"]
+[ext_resource type="Script" path="res://Bubbles/Base/bubble_base.gd" id="1_yts1p"]
 [ext_resource type="Texture2D" uid="uid://oj6wvxxp5hcs" path="res://@Textures/BubbleBaseImg.png" id="2_ucm8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03q0r"]
-radius = 20.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_beypw"]
-radius = 21.0
+radius = 33.0
 
 [node name="BubbleBase2" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_yts1p")
+pop_on_collide = true
 shape = SubResource("CircleShape2D_03q0r")
-body_shape = SubResource("CircleShape2D_beypw")
-solid = true
-target_layers = Array[int]([2, 4])
-push_strength = 1500.0
+target_layers = Array[int]([2, 4, 1])
 damage = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.625, 0.625)
 texture = ExtResource("2_ucm8l")

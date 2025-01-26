@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://mdm66h4p623a"]
+[gd_scene load_steps=6 format=3 uid="uid://mdm66h4p623a"]
 
-[ext_resource type="Script" path="res://BubbleSpawner.gd" id="1_q5k3j"]
+[ext_resource type="Script" path="res://Bubbles/Base/BubbleSpawner.gd" id="1_q5k3j"]
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="2_ta7uu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1wled"]
@@ -12,12 +12,6 @@ radius = 20.0
 [sub_resource type="SphereMesh" id="SphereMesh_xlg5a"]
 radius = 20.0
 height = 40.0
-radial_segments = 4
-rings = 8
-
-[sub_resource type="SphereMesh" id="SphereMesh_din66"]
-radius = 5.0
-height = 10.0
 radial_segments = 4
 rings = 8
 
@@ -38,7 +32,3 @@ damage = 2.5
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 mesh = SubResource("SphereMesh_xlg5a")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
-position = Vector2(0, -23)
-mesh = SubResource("SphereMesh_din66")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp15ulwaaph3m"
-path="res://.godot/imported/BubbleForceApply.png-c5a9d2349980db0eff2441fb7a2f4156.ctex"
+uid="uid://dflqokdfx4r51"
+path="res://.godot/imported/BubbleForceSet.png-97cbaef121569cc04005313c95e806c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://@Textures/BubbleForceApply.png"
-dest_files=["res://.godot/imported/BubbleForceApply.png-c5a9d2349980db0eff2441fb7a2f4156.ctex"]
+source_file="res://@Textures/BubbleForceSet.png"
+dest_files=["res://.godot/imported/BubbleForceSet.png-97cbaef121569cc04005313c95e806c3.ctex"]
 
 [params]
 
