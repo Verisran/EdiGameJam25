@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://td1jtnwsw5hw"]
+
+[ext_resource type="Script" path="res://Bubbles/Base/bubble_base.gd" id="1_vaw8e"]
+[ext_resource type="Texture2D" uid="uid://b2vptliolhor8" path="res://@Textures/BubbleSolid.png" id="2_2loqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qytyn"]
+radius = 33.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r8lw8"]
+radius = 33.0
+
+[node name="BubbleSolid" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_vaw8e")
+shape = SubResource("CircleShape2D_qytyn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r8lw8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2loqf")

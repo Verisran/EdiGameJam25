@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://mdm66h4p623a"]
+[gd_scene load_steps=5 format=3 uid="uid://mdm66h4p623a"]
 
 [ext_resource type="Script" path="res://Bubbles/Base/BubbleSpawner.gd" id="1_q5k3j"]
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="2_ta7uu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1wled"]
-radius = 20.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_msgx5"]
 radius = 20.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_xlg5a"]
@@ -26,7 +23,6 @@ pool_amt = 20
 bubble_tscn = ExtResource("2_ta7uu")
 pop_on_collide = true
 shape = SubResource("CircleShape2D_1wled")
-body_shape = SubResource("CircleShape2D_msgx5")
 target_layers = Array[int]([1, 4, 2])
 damage = 2.5
 

@@ -31,11 +31,8 @@ func action()->void:
 			break
 		to_spawn.append(popped)
 
-
 	var toggle_side: bool = false
-	#var toggle_inverse: int = 1
 	var new_dir: Vector2
-	
 	for bubble:BubbleBase in to_spawn:
 		if(toggle_side):
 			new_dir = self.transform.x

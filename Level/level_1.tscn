@@ -28,6 +28,7 @@ shape = SubResource("CircleShape2D_c72pk")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 176)
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_shmxd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -47,5 +48,6 @@ rotate_deg = 2.5
 spawn_interval = 0.5
 spawn_amt = 1
 pool_amt = 100
+pop_on_collide = false
 speed = 50.0
 direc = Vector2(0, -1)

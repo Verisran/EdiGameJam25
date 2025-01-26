@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://bf8ub5li6pm6g"]
+[gd_scene load_steps=20 format=3 uid="uid://bf8ub5li6pm6g"]
 
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="1_7ibd7"]
+[ext_resource type="PackedScene" uid="uid://td1jtnwsw5hw" path="res://Bubbles/BubbleSolid.tscn" id="1_j6gg7"]
 [ext_resource type="Script" path="res://Level/Trigger/Scripts/SpawnTrigger.gd" id="2_3itwu"]
 [ext_resource type="PackedScene" uid="uid://deespu2ab7pfb" path="res://Bubbles/BubbleAmplify.tscn" id="2_e3ktu"]
 [ext_resource type="PackedScene" uid="uid://434d5oiw35e6" path="res://Bubbles/VoidBubble.tscn" id="2_ttlug"]
 [ext_resource type="PackedScene" uid="uid://dwmnnfxhda3rk" path="res://Level/Trigger/level_complete.tscn" id="3_fn8o6"]
 [ext_resource type="PackedScene" uid="uid://buriwqa64bk40" path="res://Bubbles/BubbleRepel.tscn" id="6_ug8ja"]
 [ext_resource type="PackedScene" uid="uid://besikam6evusf" path="res://Bubbles/BubbleSetV.tscn" id="7_kipxp"]
+[ext_resource type="PackedScene" uid="uid://uuddj6wb0tl" path="res://Bubbles/BubbleHealer.tscn" id="9_seooj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pay3r"]
 
@@ -103,6 +105,9 @@ scale = Vector2(932, 40)
 mesh = SubResource("QuadMesh_etj4w")
 texture = SubResource("GradientTexture1D_6r8uy")
 
+[node name="BubbleSolid" parent="." instance=ExtResource("1_j6gg7")]
+position = Vector2(-608, -288)
+
 [node name="BubbleSetVel" parent="." instance=ExtResource("7_kipxp")]
 position = Vector2(0, -256)
 rotation = -0.523598
@@ -138,3 +143,6 @@ position = Vector2(-551, 114)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelComplete"]
 position = Vector2(-36, -40)
 shape = SubResource("RectangleShape2D_0i3jm")
+
+[node name="BubbleBase" parent="." instance=ExtResource("9_seooj")]
+position = Vector2(-768, 96)

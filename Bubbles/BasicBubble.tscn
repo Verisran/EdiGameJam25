@@ -12,7 +12,6 @@ collision_mask = 0
 script = ExtResource("1_yts1p")
 pop_on_collide = true
 shape = SubResource("CircleShape2D_03q0r")
-target_layers = Array[int]([2, 4, 1])
 damage = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

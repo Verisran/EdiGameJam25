@@ -7,8 +7,7 @@ class_name BubbleBase
 @export var direc: Vector2
 @export_category("Collision")
 @export var shape: Shape2D
-@export var body_shape: Shape2D
-@export var solid: bool = false
+
 @export var target_layers: Array[PhysicsCast.TargetLayer] = [PhysicsCast.TargetLayer.World, PhysicsCast.TargetLayer.PlayerCol, PhysicsCast.TargetLayer.PlayerHealthHitbox]
 @export_category("On Collide")
 var layers: int = 0
@@ -20,23 +19,15 @@ var cooldown: bool = false
 @export_category("Damage")
 @export var damage: float = 0
 
-
-func _init() -> void:
-	if(solid):
-		collider = CollisionShape2D.new()
-		collider.shape = body_shape
-		add_child(collider)
-
 func _ready() -> void:
 	for layer in target_layers:
 		layers += layer
-	
+
 func _physics_process(delta: float)->void:
 	if(!GameManager.level_started or GameManager.distance_to_player(self) > 2000):
 		if(GameManager.distance_to_player(self) > 5000):
 			queue_free()
 		return
-	
 	movement()
 	cast_collision()
 	action()
@@ -63,8 +54,6 @@ func cast_collision()->void:
 				continue
 			if(result.collider is Node2D):
 				pop()
-		#if(queue_pop):
-
 
 func on_collide_entity(target: BaseKinematic)->void:
 	push(target)
