@@ -126,6 +126,9 @@ damage = 1.0
 [node name="VoidBubble" parent="." instance=ExtResource("2_ttlug")]
 position = Vector2(-176, 0)
 
+[node name="BubbleBase" parent="." instance=ExtResource("9_seooj")]
+position = Vector2(-768, 96)
+
 [node name="SpawnTrigger" type="Area2D" parent="."]
 position = Vector2(-1265, -193)
 script = ExtResource("2_3itwu")
@@ -143,6 +146,3 @@ position = Vector2(-551, 114)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelComplete"]
 position = Vector2(-36, -40)
 shape = SubResource("RectangleShape2D_0i3jm")
-
-[node name="BubbleBase" parent="." instance=ExtResource("9_seooj")]
-position = Vector2(-768, 96)

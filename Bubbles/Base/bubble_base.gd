@@ -20,6 +20,8 @@ var cooldown: bool = false
 @export var damage: float = 0
 
 func _ready() -> void:
+	if(layers != 0):
+		return
 	for layer in target_layers:
 		layers += layer
 
@@ -39,7 +41,6 @@ func movement()->void:
 
 func cast_collision()->void:
 	if(!cooldown):
-		#var queue_pop: bool = false
 		var results: Array[Dictionary] = PhysicsCast.shape(self, shape, layers, 2, true, true)
 		for result in results:
 			if(result.is_empty()):
@@ -53,6 +54,7 @@ func cast_collision()->void:
 				attack(result.collider)
 				continue
 			if(result.collider is Node2D):
+				print("FUCK")
 				pop()
 
 func on_collide_entity(target: BaseKinematic)->void:
@@ -111,4 +113,5 @@ func start_attack(spd: float, dir: Vector2, start_position: Vector2, dmg: float,
 	position = start_position
 	damage = dmg
 	layers = inherit_layer
+	print("set: ", layers)
 	pop_on_collide = pop_collide

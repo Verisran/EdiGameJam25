@@ -129,7 +129,6 @@ func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->v
 		grav_multiplier = 1
 
 func death_seq()->void:
-	#await get_tree().create_timer(0.01, false).timeout
 	reset()
 	GameManager.show_death_screen()
 

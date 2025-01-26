@@ -40,7 +40,7 @@ func action()->void:
 		else:
 			new_dir = self.transform.y
 			toggle_side = !toggle_side
-		bubble.start_attack(new_speed, new_dir, self.position+new_dir*2, new_dmg, layers)
+		bubble.start_attack(new_speed, new_dir, self.position+new_dir*20, new_dmg, 7)
 		GameManager.LevelRoot.add_child(bubble)
 	can_spawn = false
 	await get_tree().create_timer(spawn_interval, false).timeout

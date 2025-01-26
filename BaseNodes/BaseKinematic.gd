@@ -3,7 +3,6 @@ class_name BaseKinematic
 
 enum PushType{NULL = 0, REPEL = 1, PULL = 2, AMPLIFY = 3, SET_VELOCITY = 4}
 
-
 func impulse(vector: Vector2, strength: float, use_current_dir: bool = false)->void:
 	if(use_current_dir):
 		vector = velocity.normalized()

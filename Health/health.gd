@@ -16,7 +16,7 @@ func _ready() -> void:
 	my_hitbox.shape = shape
 	
 func take_damage(damage: float)->void:
-	health -= damage
+	health = clampf(health-damage, 0, target_health)
 	if(health <= 0 and !dead):
 		die()
 

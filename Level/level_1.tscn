@@ -3,9 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dwmnnfxhda3rk" path="res://Level/Trigger/level_complete.tscn" id="1_gt7p1"]
 [ext_resource type="PackedScene" uid="uid://mdm66h4p623a" path="res://Bubbles/SpawnerBubble.tscn" id="2_x6btu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c72pk"]
-radius = 88.3629
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shmxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqr8h"]
@@ -18,17 +15,13 @@ size = Vector2(892, 36.0003)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1qo78"]
 gradient = SubResource("Gradient_aydkb")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_c72pk"]
+radius = 88.3629
+
 [node name="Level1" type="Node2D"]
-
-[node name="LevelComplete" parent="." instance=ExtResource("1_gt7p1")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelComplete"]
-position = Vector2(424, 64)
-shape = SubResource("CircleShape2D_c72pk")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 176)
-collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_shmxd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -39,6 +32,12 @@ scale = Vector2(922, 40)
 mesh = SubResource("QuadMesh_v1m7k")
 texture = SubResource("GradientTexture1D_1qo78")
 
+[node name="LevelComplete" parent="." instance=ExtResource("1_gt7p1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelComplete"]
+position = Vector2(424, 64)
+shape = SubResource("CircleShape2D_c72pk")
+
 [node name="BubbleSpawner" parent="." instance=ExtResource("2_x6btu")]
 position = Vector2(-256, -64)
 collision_layer = 0
@@ -48,6 +47,3 @@ rotate_deg = 2.5
 spawn_interval = 0.5
 spawn_amt = 1
 pool_amt = 100
-pop_on_collide = false
-speed = 50.0
-direc = Vector2(0, -1)
