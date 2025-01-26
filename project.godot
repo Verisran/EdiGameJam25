@@ -15,7 +15,6 @@ run/main_scene="res://Level/GameRoot/game_root.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="VERISANBubbleGame"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/show_image=false
 config/icon="res://@Imported/IconBubble.png"
 
 [autoload]
@@ -39,6 +38,7 @@ project/assembly_name="BubbleBound"
 [file_customization]
 
 folder_colors={
+"res://@Textures/": "pink",
 "res://Autoloads/": "blue",
 "res://BaseNodes/": "teal",
 "res://Bubbles/": "green",
@@ -98,3 +98,7 @@ Action2={
 2d_physics/layer_4="EnemyCollision"
 2d_physics/layer_5="DamageHitbox"
 2d_physics/layer_6="EnemyHealthHitbox"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

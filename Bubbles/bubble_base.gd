@@ -57,7 +57,6 @@ func cast_collision()->void:
 				on_collide_entity(result.collider)
 				continue
 			if(result.collider is HealthBase):
-				print("ATTACKING")
 				if(push_mode == PushType.PULL):
 					continue
 				attack(result.collider)

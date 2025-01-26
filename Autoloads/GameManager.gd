@@ -77,7 +77,7 @@ func level_start()->void:
 	ui_root.remove_child(pre_level_start)
 	level_time = 0
 	start_timer = true
-	print(level_time)
+
 	
 func set_level_complete()->void:
 	start_timer = false
@@ -148,5 +148,4 @@ func load_completion(force_default: bool = false)->void:
 		completion.append(item)
 	save_file.close()
 	completionLoaded.emit()
-	print(completion)
 #endregion

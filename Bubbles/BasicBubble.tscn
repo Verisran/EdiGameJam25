@@ -1,24 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://fu244ak5fa8o"]
+[gd_scene load_steps=5 format=3 uid="uid://fu244ak5fa8o"]
 
 [ext_resource type="Script" path="res://Bubbles/bubble_base.gd" id="1_yts1p"]
+[ext_resource type="Texture2D" uid="uid://oj6wvxxp5hcs" path="res://@Textures/BubbleBaseImg.png" id="2_ucm8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03q0r"]
 radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_beypw"]
 radius = 21.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_10hwh"]
-radius = 20.0
-height = 40.0
-radial_segments = 4
-rings = 8
-
-[sub_resource type="SphereMesh" id="SphereMesh_kuwig"]
-radius = 5.0
-height = 10.0
-radial_segments = 4
-rings = 8
 
 [node name="BubbleBase2" type="CharacterBody2D"]
 collision_layer = 8
@@ -31,9 +20,6 @@ target_layers = Array[int]([2, 4])
 push_strength = 1500.0
 damage = 5.0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-mesh = SubResource("SphereMesh_10hwh")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
-position = Vector2(0, -23)
-mesh = SubResource("SphereMesh_kuwig")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("2_ucm8l")
