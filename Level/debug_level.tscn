@@ -111,11 +111,10 @@ position = Vector2(-608, -288)
 [node name="BubbleSetVel" parent="." instance=ExtResource("7_kipxp")]
 position = Vector2(0, -256)
 rotation = -0.523598
-push_strength = 1500.0
+on_player_input = true
 
 [node name="BubbleRepel" parent="." instance=ExtResource("6_ug8ja")]
 position = Vector2(0, 120)
-push_strength = 1500.0
 
 [node name="BubbleAmp" parent="." instance=ExtResource("2_e3ktu")]
 position = Vector2(320, 112)
@@ -126,7 +125,7 @@ damage = 1.0
 [node name="VoidBubble" parent="." instance=ExtResource("2_ttlug")]
 position = Vector2(-176, 0)
 
-[node name="BubbleBase" parent="." instance=ExtResource("9_seooj")]
+[node name="BubbleHeal" parent="." instance=ExtResource("9_seooj")]
 position = Vector2(-768, 96)
 
 [node name="SpawnTrigger" type="Area2D" parent="."]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://deespu2ab7pfb"]
+[gd_scene load_steps=5 format=3 uid="uid://deespu2ab7pfb"]
 
 [ext_resource type="Script" path="res://Bubbles/Base/bubble_base.gd" id="1_4e1n6"]
+[ext_resource type="Texture2D" uid="uid://clb3pbycbyt6c" path="res://@Textures/TapRing.png" id="2_u12j2"]
 [ext_resource type="Texture2D" uid="uid://dp15ulwaaph3m" path="res://@Textures/BubbleForceAmp.png" id="2_vmic3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0574"]
@@ -11,7 +12,11 @@ script = ExtResource("1_4e1n6")
 pop_on_collide = true
 shape = SubResource("CircleShape2D_e0574")
 push_mode = 3
-push_strength = 1500.0
+push_strength = 750.0
+
+[node name="TapRing" type="Sprite2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_u12j2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_vmic3")

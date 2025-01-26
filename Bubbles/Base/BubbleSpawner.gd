@@ -13,6 +13,8 @@ var pool: Array[BubbleBase]
 var can_spawn: bool = true
 
 func _ready() -> void:
+	if(tap_ring == null):
+		on_player_input = false
 	for layer in target_layers:
 		layers += layer
 	for i in range(pool_amt):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mdm66h4p623a"]
+[gd_scene load_steps=6 format=3 uid="uid://mdm66h4p623a"]
 
 [ext_resource type="Script" path="res://Bubbles/Base/BubbleSpawner.gd" id="1_q5k3j"]
 [ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="2_ta7uu"]
+[ext_resource type="Texture2D" uid="uid://clb3pbycbyt6c" path="res://@Textures/TapRing.png" id="3_o7ub2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1wled"]
 radius = 20.0
@@ -28,3 +29,8 @@ damage = 2.5
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 mesh = SubResource("SphereMesh_xlg5a")
+
+[node name="TapRing" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_o7ub2")

@@ -39,7 +39,7 @@ offset_bottom = 608.0
 theme_override_font_sizes/font_size = 25
 text = "Main Menu"
 script = ExtResource("2_11dhw")
-level_index = 1
+level_index = -1
 
 [node name="QuitGameButton" type="Button" parent="."]
 layout_mode = 0

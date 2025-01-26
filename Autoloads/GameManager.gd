@@ -22,11 +22,20 @@ var level_started: bool = false
 var level_time: float = 0
 var start_timer: bool = false
 
+var player_input_push: bool = false
+
 func _input(event: InputEvent) -> void:
 	if(event is InputEventKey):
 		if(Input.is_action_just_pressed("ui_cancel") and level_started):
 			pause_toggle()
+		if(Input.is_action_just_pressed("Action1") and !player_input_push):
+			player_input_push = true
+			hold_input()
 
+func hold_input()->void:
+	await get_tree().create_timer(0.25, false).timeout
+	player_input_push = false
+	
 func _ready() -> void:
 	load_completion()
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)

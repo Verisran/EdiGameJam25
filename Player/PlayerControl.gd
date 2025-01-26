@@ -19,7 +19,7 @@ var speed_target: float = speed
 			return speed_decel*100
 		else:
 			return speed_decel
-@export var wall_vector: Vector2 = Vector2.ZERO
+var wall_vector: Vector2 = Vector2.ZERO
 
 @export var jumps: int = 3
 var jumps_amt: int = jumps
