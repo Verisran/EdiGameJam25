@@ -49,14 +49,15 @@ func movement()->void:
 func cast_collision()->void:
 	var collided_with: bool = false
 	if(!cooldown):
-		var results: Array[Dictionary] = PhysicsCast.shape(self, shape, layers, 2, true, true)
+		var results: Array[Dictionary] = PhysicsCast.shape(self, shape, layers, 3, true, true)
 		for result in results:
 			if(result.is_empty()):
 				continue
 			if(result.collider is Player):
 				on_collide_entity(result.collider)
+				attack(result.collider.health)
 				collided_with = true
-				continue
+				break
 			if(result.collider is HealthBase):
 				if(push_mode == PushType.PULL):
 					collided_with = true

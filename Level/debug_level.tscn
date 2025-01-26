@@ -115,6 +115,8 @@ on_player_input = true
 
 [node name="BubbleRepel" parent="." instance=ExtResource("6_ug8ja")]
 position = Vector2(0, 120)
+target_layers = Array[int]([4, 2])
+damage = 5.0
 
 [node name="BubbleAmp" parent="." instance=ExtResource("2_e3ktu")]
 position = Vector2(320, 112)
