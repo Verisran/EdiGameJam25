@@ -1,15 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4elvcxkva6mi"]
+[gd_scene load_steps=11 format=4 uid="uid://b4elvcxkva6mi"]
 
 [ext_resource type="PackedScene" uid="uid://dwmnnfxhda3rk" path="res://Level/Trigger/level_complete.tscn" id="1_gt7p1"]
-[ext_resource type="PackedScene" uid="uid://mdm66h4p623a" path="res://Bubbles/SpawnerBubble.tscn" id="2_x6btu"]
 [ext_resource type="Texture2D" uid="uid://brwn7rvb57rem" path="res://@Textures/BlockTextureBigger.png" id="3_edqx4"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shmxd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqr8h"]
-size = Vector2(892, 36.0003)
-
-[sub_resource type="QuadMesh" id="QuadMesh_v1m7k"]
+[ext_resource type="PackedScene" uid="uid://fu244ak5fa8o" path="res://Bubbles/BasicBubble.tscn" id="4_hly3y"]
+[ext_resource type="PackedScene" uid="uid://besikam6evusf" path="res://Bubbles/BubbleSetV.tscn" id="4_p7n1b"]
+[ext_resource type="PackedScene" uid="uid://deespu2ab7pfb" path="res://Bubbles/BubbleAmplify.tscn" id="5_an314"]
+[ext_resource type="PackedScene" uid="uid://buriwqa64bk40" path="res://Bubbles/BubbleRepel.tscn" id="6_y5mrm"]
+[ext_resource type="PackedScene" uid="uid://434d5oiw35e6" path="res://Bubbles/VoidBubble.tscn" id="7_rck4n"]
+[ext_resource type="PackedScene" uid="uid://uuddj6wb0tl" path="res://Bubbles/BubbleHealer.tscn" id="8_uhcoq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xf5t3"]
 resource_name = "StoneBlock"
@@ -536,29 +534,49 @@ sources/1 = SubResource("TileSetAtlasSource_xf5t3")
 
 [node name="Level1" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 176)
-physics_material_override = SubResource("PhysicsMaterial_shmxd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_rqr8h")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
-scale = Vector2(922, 40)
-mesh = SubResource("QuadMesh_v1m7k")
-
 [node name="LevelComplete" parent="." instance=ExtResource("1_gt7p1")]
-position = Vector2(432, 156)
-
-[node name="BubbleSpawner" parent="." instance=ExtResource("2_x6btu")]
-position = Vector2(-224, -264)
-collision_layer = 0
-new_dmg = 1.0
-new_speed = 100.0
-rotate_deg = 2.5
-spawn_interval = 0.5
-spawn_amt = 1
-pool_amt = 100
+position = Vector2(119, -3015)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AADz/wsAAQAAAAAAAAADAAsAAQAAAAAAAAATAAsAAQAAAAAAAAAjAAsAAQAAAAAAAAAzAAsAAQAAAAAAAAAzAPv/AQAAAAAAAAAzAOv/AQAAAAAAAADj/wsAAQAAAAAAAADj//v/AQAAAAAAAADj/+v/AQAAAAAAAADj/9v/AQAAAAAAAADz/9v/AQAAAAAAAAADANv/AQAAAAAAAAATANv/AQAAAAAAAAATAMv/AQAAAAAAAAAjAMv/AQAAAAAAAAAzAMv/AQAAAAAAAABDAOv/AQAAAAAAAABTAOv/AQAAAAAAAABTANv/AQAAAAAAAABTAMv/AQAAAAAAAABTALv/AQAAAAAAAABTAKv/AQAAAAAAAABDAKv/AQAAAAAAAAAzAKv/AQAAAAAAAAAjAKv/AQAAAAAAAAAjAJv/AQAAAAAAAAADAKv/AQAAAAAAAADz/6v/AQAAAAAAAADj/6v/AQAAAAAAAAADAIv/AQAAAAAAAADT/3v/AQAAAAAAAAAjAIv/AQAAAAAAAAATAIv/AQAAAAAAAAADAHv/AQAAAAAAAAADAGv/AQAAAAAAAAADAFv/AQAAAAAAAAADAEv/AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_q7c23")
+
+[node name="BubbleSetVel" parent="." instance=ExtResource("4_p7n1b")]
+position = Vector2(-734, -806)
+on_player_input = true
+push_strength = 1750.0
+
+[node name="BubbleSetVel2" parent="." instance=ExtResource("4_p7n1b")]
+position = Vector2(-431, -1522)
+on_player_input = true
+push_strength = 1000.0
+
+[node name="BubbleSetVel3" parent="." instance=ExtResource("4_p7n1b")]
+position = Vector2(-121, -2849)
+on_player_input = true
+push_strength = 800.0
+
+[node name="BubbleBase2" parent="." instance=ExtResource("4_hly3y")]
+position = Vector2(-508, -2019)
+pop_on_collide = false
+
+[node name="BubbleAmp" parent="." instance=ExtResource("5_an314")]
+position = Vector2(-366, -2261)
+pop_on_collide = false
+push_strength = 1000.0
+
+[node name="BubbleRepel" parent="." instance=ExtResource("6_y5mrm")]
+position = Vector2(568, -28)
+damage = 5.0
+
+[node name="BubbleBase" parent="." instance=ExtResource("7_rck4n")]
+position = Vector2(87, -1132)
+
+[node name="BubbleHeal" parent="." instance=ExtResource("8_uhcoq")]
+position = Vector2(-379, -751)
+
+[node name="BubbleBase3" parent="." instance=ExtResource("4_hly3y")]
+position = Vector2(1032, -722)
+
+[node name="BubbleBase4" parent="." instance=ExtResource("4_hly3y")]
+position = Vector2(1096, -883)

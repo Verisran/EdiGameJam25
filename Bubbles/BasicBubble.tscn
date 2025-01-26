@@ -14,6 +14,7 @@ collision_mask = 0
 script = ExtResource("1_yts1p")
 pop_on_collide = true
 shape = SubResource("CircleShape2D_03q0r")
+target_layers = Array[int]([1, 2])
 on_player_input = true
 push_mode = 5
 push_strength = 500.0

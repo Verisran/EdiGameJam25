@@ -37,6 +37,7 @@ floor_max_angle = 1.0472
 script = ExtResource("1_t8wne")
 camera = NodePath("SmoothCam/Camera2D")
 health = NodePath("Health")
+jumps = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o1pmw")
