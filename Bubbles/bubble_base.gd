@@ -9,7 +9,7 @@ class_name BubbleBase
 @export var shape: Shape2D
 @export var body_shape: Shape2D
 @export var solid: bool = false
-@export var target_layers: Array[PhysicsCast.TargetLayer]
+@export var target_layers: Array[PhysicsCast.TargetLayer] = [PhysicsCast.TargetLayer.World, PhysicsCast.TargetLayer.PlayerCol, PhysicsCast.TargetLayer.PlayerHealthHitbox]
 @export_category("On Collide")
 var layers: int = 0
 var collider: CollisionShape2D

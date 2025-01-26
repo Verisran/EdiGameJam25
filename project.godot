@@ -10,12 +10,13 @@ config_version=5
 
 [application]
 
-config/name="BubbleBound"
+config/name="BubbleBorne"
 run/main_scene="res://Level/GameRoot/game_root.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="VERISANBubbleGame"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+config/icon="res://@Imported/IconBubble.png"
 
 [autoload]
 

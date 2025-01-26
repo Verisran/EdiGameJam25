@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://434d5oiw35e6"]
+
+[ext_resource type="Script" path="res://Bubbles/bubble_base.gd" id="1_y1gcq"]
+
+[node name="BubbleBase" type="CharacterBody2D"]
+script = ExtResource("1_y1gcq")
+pop_on_collide = true
