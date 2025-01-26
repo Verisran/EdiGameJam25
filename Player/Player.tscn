@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
 [ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
+[ext_resource type="Texture2D" uid="uid://d2xg031buy5hu" path="res://@Textures/Player.png" id="2_p4yyx"]
 [ext_resource type="PackedScene" uid="uid://c4cdefbrtm40k" path="res://Health/health.tscn" id="3_6dh2p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1pmw"]
@@ -10,10 +11,10 @@
 shading_mode = 0
 albedo_color = Color(0.898039, 0.133333, 0.133333, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_bppwt"]
+[sub_resource type="SphereMesh" id="SphereMesh_x70a4"]
 material = SubResource("StandardMaterial3D_jcemc")
-radius = 10.0
-height = 20.0
+radius = 5.0
+height = 10.0
 radial_segments = 16
 rings = 8
 
@@ -22,13 +23,6 @@ colors = PackedColorArray(0.972549, 0, 0, 1, 0.972549, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_al3aj"]
 gradient = SubResource("Gradient_2kr5u")
-
-[sub_resource type="SphereMesh" id="SphereMesh_x70a4"]
-material = SubResource("StandardMaterial3D_jcemc")
-radius = 5.0
-height = 10.0
-radial_segments = 16
-rings = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgaa2"]
 
@@ -51,7 +45,7 @@ height = 16
 fill_from = Vector2(0, 1)
 fill_to = Vector2(1, 1)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("camera", "health")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "health")]
 physics_interpolation_mode = 1
 floor_constant_speed = true
 floor_max_angle = 1.0472
@@ -62,12 +56,11 @@ health = NodePath("Health")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o1pmw")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
-position = Vector2(0, 1.90735e-06)
-mesh = SubResource("SphereMesh_bppwt")
-texture = SubResource("GradientTexture1D_al3aj")
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture = ExtResource("2_p4yyx")
 
 [node name="point" type="MeshInstance2D" parent="CollisionShape2D"]
+visible = false
 position = Vector2(0, -12)
 mesh = SubResource("SphereMesh_x70a4")
 texture = SubResource("GradientTexture1D_al3aj")

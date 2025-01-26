@@ -12,7 +12,7 @@
 
 [node name="PlayerRoot" type="Node2D" parent="."]
 
-[node name="CharacterBody2D" parent="PlayerRoot" instance=ExtResource("3_awbhi")]
+[node name="Player" parent="PlayerRoot" instance=ExtResource("3_awbhi")]
 collision_layer = 2
 
 [node name="UIRoot" type="CanvasLayer" parent="."]

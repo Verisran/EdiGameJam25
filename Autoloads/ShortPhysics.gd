@@ -17,10 +17,11 @@ func ray(myself: Node2D, from: Vector2, direction: Vector2, length: float, layer
 	query.collide_with_areas = areas
 	return space_state.intersect_ray(query)
 
-func shape(myself: Node2D, shape2d: Shape2D, layers: int, max_results: int = 1, bodies: bool = true, areas: bool = false, space_state: PhysicsDirectSpaceState2D = null)->Array[Dictionary]:
+func shape(myself: Node2D ,shape2d: Shape2D, layers: int, max_results: int = 1, bodies: bool = true, areas: bool = false, new_tran: Transform2D = myself.transform ,space_state: PhysicsDirectSpaceState2D = null)->Array[Dictionary]:
 	if(space_state == null):
 		space_state = myself.get_world_2d().direct_space_state
 	var query: PhysicsShapeQueryParameters2D = PhysicsShapeQueryParameters2D.new()
+	query.transform = new_tran
 	query.set_collision_mask(layers); 
 	query.set_shape(shape2d); 
 	query.set_transform(myself.transform); 

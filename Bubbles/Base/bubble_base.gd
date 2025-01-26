@@ -54,7 +54,6 @@ func cast_collision()->void:
 				attack(result.collider)
 				continue
 			if(result.collider is Node2D):
-				print("FUCK")
 				pop()
 
 func on_collide_entity(target: BaseKinematic)->void:
@@ -99,8 +98,12 @@ func start_cooldown()->void:
 	await get_tree().create_timer(cooldown_time, false).timeout
 	cooldown = false
 
-func pop()->void:
-	if(!pop_on_collide):
+func player_pop(player: Player)->void:
+	push(player)
+	pop(true)
+	
+func pop(force_pop: bool = false)->void:
+	if(!pop_on_collide and !force_pop):
 		return
 	self.queue_free()
 

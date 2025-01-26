@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm2pujpwv1pjb"]
+[gd_scene load_steps=3 format=3 uid="uid://cm2pujpwv1pjb"]
 
 [ext_resource type="Script" path="res://PlayerWeapon/weapon_manager.gd" id="1_7fphp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfyym"]
+size = Vector2(16, 64)
+
 [node name="WeaponSystem" type="Node2D"]
 script = ExtResource("1_7fphp")
+hitbox = SubResource("RectangleShape2D_sfyym")
+
+[node name="SwordVisual" type="Sprite2D" parent="."]
+rotation = -1.57079
+offset = Vector2(32, 0)
