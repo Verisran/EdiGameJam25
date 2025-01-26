@@ -34,6 +34,7 @@ var move_dir: float:
 		return Input.get_axis("Left", "Right")
 
 var disabled: bool = true
+@onready var jump_audio: AudioStreamPlayer = $CollisionShape2D/JumpAudio
 
 func _physics_process(_delta: float) -> void:
 	if(!GameManager.level_started or health.dead):
@@ -65,6 +66,8 @@ func velocity_control(direc: float)->void:
 			jumps_amt -= 1
 		velocity.y = 0
 		impulse(Vector2.DOWN, jump_force)
+		jump_audio.pitch_scale = randf_range(0.90, 1.10)
+		jump_audio.play()
 		if(wall_vector):
 			velocity.x = 0
 			impulse(wall_vector+Vector2(0,0.25), jump_force)

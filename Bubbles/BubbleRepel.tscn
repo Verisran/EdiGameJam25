@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://buriwqa64bk40"]
+[gd_scene load_steps=6 format=3 uid="uid://buriwqa64bk40"]
 
 [ext_resource type="Script" path="res://Bubbles/Base/bubble_base.gd" id="1_7msmj"]
 [ext_resource type="Texture2D" uid="uid://b0ftcagjgaxmx" path="res://@Textures/BubbleForceRepel.png" id="2_1un5a"]
 [ext_resource type="Texture2D" uid="uid://clb3pbycbyt6c" path="res://@Textures/TapRing.png" id="2_gx8du"]
+[ext_resource type="AudioStream" uid="uid://uyb6q3kg5pxm" path="res://Sounds/popSound.wav" id="4_nkvfs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i4dup"]
 radius = 33.0
@@ -20,3 +21,8 @@ texture = ExtResource("2_gx8du")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1un5a")
+
+[node name="TriggerAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="PopAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nkvfs")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://uuddj6wb0tl"]
+[gd_scene load_steps=6 format=3 uid="uid://uuddj6wb0tl"]
 
 [ext_resource type="Script" path="res://Bubbles/Base/bubble_base.gd" id="1_4shms"]
 [ext_resource type="Texture2D" uid="uid://clb3pbycbyt6c" path="res://@Textures/TapRing.png" id="2_5hsmp"]
 [ext_resource type="Texture2D" uid="uid://cirlhhrnd5p64" path="res://@Textures/BubbleHealer.png" id="2_hqn7w"]
+[ext_resource type="AudioStream" uid="uid://uyb6q3kg5pxm" path="res://Sounds/popSound.wav" id="4_13tpn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ckgwd"]
 radius = 33.0
@@ -19,3 +20,8 @@ texture = ExtResource("2_5hsmp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_hqn7w")
+
+[node name="TriggerAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="PopAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_13tpn")

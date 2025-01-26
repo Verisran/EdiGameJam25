@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjmis435pqcrb"]
+[gd_scene load_steps=12 format=3 uid="uid://cjmis435pqcrb"]
 
 [ext_resource type="Script" path="res://Player/PlayerControl.gd" id="1_t8wne"]
 [ext_resource type="Script" path="res://Player/CameraSmooth.gd" id="2_2bw23"]
 [ext_resource type="Texture2D" uid="uid://d2xg031buy5hu" path="res://@Textures/Player.png" id="2_p4yyx"]
 [ext_resource type="PackedScene" uid="uid://c4cdefbrtm40k" path="res://Health/health.tscn" id="3_6dh2p"]
+[ext_resource type="AudioStream" uid="uid://b3mikyrmlobax" path="res://Sounds/jump.wav" id="3_hp52a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1pmw"]
 radius = 16.5
@@ -42,6 +43,10 @@ shape = SubResource("CircleShape2D_o1pmw")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture = ExtResource("2_p4yyx")
+
+[node name="JumpAudio" type="AudioStreamPlayer" parent="CollisionShape2D"]
+stream = ExtResource("3_hp52a")
+volume_db = -12.28
 
 [node name="Health" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_6dh2p")]
 health = 20.0

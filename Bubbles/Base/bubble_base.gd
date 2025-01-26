@@ -22,6 +22,8 @@ var cooldown: bool = false
 @export var damage: float = 0
 var tap_ring: Sprite2D
 @export var tap_ring_target: Vector2 = Vector2(2,2)
+@onready var trigger_audio: AudioStreamPlayer = $TriggerAudio
+@onready var pop_audio: AudioStreamPlayer = $PopAudio
 
 func _ready() -> void:
 	tap_ring = self.get_node_or_null("TapRing")
@@ -55,7 +57,8 @@ func cast_collision()->void:
 				continue
 			if(result.collider is Player):
 				on_collide_entity(result.collider)
-				attack(result.collider.health)
+				if(push_mode != PushType.PULL):
+					attack(result.collider.health)
 				collided_with = true
 				break
 			if(result.collider is HealthBase):
@@ -76,7 +79,7 @@ func on_collide_entity(target: Player)->void:
 		if(GameManager.player_input_push):
 			push(target)
 			if(pop_on_collide):
-				pop(true, 0.25)
+				pop(true, 0.1)
 		else:
 			return
 	else:
@@ -86,6 +89,7 @@ func on_collide_entity(target: Player)->void:
 func push(target: Player)->void:
 	if(target is Player):
 		target.jumps_amt = target.jumps
+	trigger_audio.play()
 	match push_mode: 
 		PushType.REPEL:
 			target.velocity = Vector2.ZERO
@@ -132,6 +136,9 @@ func pop(force_pop: bool = false, delay: float = -1)->void:
 		return
 	if(delay > 0):
 		await get_tree().create_timer(delay, false).timeout
+	self.visible = false
+	pop_audio.play()
+	await pop_audio.finished
 	self.queue_free()
 
 func action()->void:

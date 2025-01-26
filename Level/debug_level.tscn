@@ -126,6 +126,7 @@ damage = 1.0
 
 [node name="VoidBubble" parent="." instance=ExtResource("2_ttlug")]
 position = Vector2(-176, 0)
+target_layers = Array[int]([2, 4])
 
 [node name="BubbleHeal" parent="." instance=ExtResource("9_seooj")]
 position = Vector2(-768, 96)

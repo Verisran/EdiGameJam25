@@ -13,16 +13,18 @@ metadata/_edit_lock_ = true
 
 [node name="PlayButton" type="Button" parent="Buttons"]
 offset_left = 192.0
-offset_top = 384.0
-offset_right = 384.0
+offset_top = 320.0
+offset_right = 448.0
 offset_bottom = 448.0
+theme_override_font_sizes/font_size = 40
 text = "Levels"
 
 [node name="QuitGameButton" type="Button" parent="Buttons"]
 offset_left = 192.0
-offset_top = 640.0
-offset_right = 384.0
+offset_top = 576.0
+offset_right = 448.0
 offset_bottom = 704.0
+theme_override_font_sizes/font_size = 40
 text = "Quit"
 script = ExtResource("2_r2d73")
 

@@ -22,3 +22,7 @@ texture = ExtResource("2_kfq87")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_pywuw")
+
+[node name="TriggerAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="PopAudio" type="AudioStreamPlayer" parent="."]
