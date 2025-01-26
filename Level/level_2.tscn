@@ -1,3 +1,10 @@
 [gd_scene format=3 uid="uid://bmb26a2bt3hxg"]
 
 [node name="Level2" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -104.0
+offset_top = 232.0
+offset_right = 97.0
+offset_bottom = 255.0
+text = "NO TIME TO DO THIS LEVEL :("
