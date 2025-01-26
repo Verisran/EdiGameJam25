@@ -15,7 +15,7 @@ pop_on_collide = true
 shape = SubResource("CircleShape2D_03q0r")
 on_player_input = true
 push_mode = 5
-push_strength = 400.0
+push_strength = 500.0
 push_direc = Vector2(0, -1)
 
 [node name="TapRing" type="Sprite2D" parent="."]

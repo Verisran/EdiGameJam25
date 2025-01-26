@@ -71,11 +71,11 @@ func cast_collision()->void:
 
 func on_collide_entity(target: Player)->void:
 	if(on_player_input):
-		tap_ring.scale = lerp(tap_ring.scale, tap_ring_target, 0.5)
+		tap_ring.scale = lerp(tap_ring.scale, tap_ring_target, 0.8)
 		if(GameManager.player_input_push):
 			push(target)
 			if(pop_on_collide):
-				pop(true, 1)
+				pop(true, 0.25)
 		else:
 			return
 	else:
