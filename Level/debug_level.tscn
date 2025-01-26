@@ -106,9 +106,11 @@ texture = SubResource("GradientTexture1D_6r8uy")
 [node name="BubbleSetVel" parent="." instance=ExtResource("7_kipxp")]
 position = Vector2(0, -256)
 rotation = -0.523598
+push_strength = 1500.0
 
 [node name="BubbleRepel" parent="." instance=ExtResource("6_ug8ja")]
 position = Vector2(0, 120)
+push_strength = 1500.0
 
 [node name="BubbleAmp" parent="." instance=ExtResource("2_e3ktu")]
 position = Vector2(320, 112)

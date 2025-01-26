@@ -32,10 +32,10 @@ func _ready() -> void:
 		layers += layer
 	
 func _physics_process(delta: float)->void:
-	if(!GameManager.level_started):
+	if(!GameManager.level_started or GameManager.distance_to_player(self) > 2000):
+		if(GameManager.distance_to_player(self) > 5000):
+			queue_free()
 		return
-	if(GameManager.distance_to_player(self) > 1200):
-		queue_free()
 	
 	movement()
 	cast_collision()
