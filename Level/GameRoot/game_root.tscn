@@ -30,4 +30,8 @@ script = ExtResource("2_chrk2")
 shape = SubResource("WorldBoundaryShape2D_mmj5v")
 debug_color = Color(0, 0.595, 0.7, 1)
 
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+visible = false
+motion_scale = Vector2(0, 1)
+
 [connection signal="body_entered" from="WorldDeathBarrier" to="WorldDeathBarrier" method="_on_body_entered"]

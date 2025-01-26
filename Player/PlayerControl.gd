@@ -79,14 +79,14 @@ func get_wall_side()->void:
 	if(is_on_floor()):
 		wall_vector = Vector2.ZERO
 		return
-	var wall_left: Dictionary = PhysicsCast.ray(self, global_position, Vector2.LEFT, 12, PhysicsCast.TargetLayer.World + PhysicsCast.TargetLayer.EnemyCol)
+	var wall_left: Dictionary = PhysicsCast.ray(self, global_position, Vector2.LEFT, 17, PhysicsCast.TargetLayer.World + PhysicsCast.TargetLayer.EnemyCol)
 	if(!wall_left.is_empty()):
 		wall_slide_down()
 		velocity.x = 0
 		wall_vector = -wall_left.normal
 		return
 	
-	var wall_right: Dictionary = PhysicsCast.ray(self, global_position, Vector2.RIGHT, 12, PhysicsCast.TargetLayer.World + PhysicsCast.TargetLayer.EnemyCol)
+	var wall_right: Dictionary = PhysicsCast.ray(self, global_position, Vector2.RIGHT, 17, PhysicsCast.TargetLayer.World + PhysicsCast.TargetLayer.EnemyCol)
 	if(!wall_right.is_empty()):
 		wall_slide_down()
 		velocity.x = 0

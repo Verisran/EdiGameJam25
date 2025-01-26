@@ -127,6 +127,7 @@ position = Vector2(-176, 0)
 
 [node name="BubbleHeal" parent="." instance=ExtResource("9_seooj")]
 position = Vector2(-768, 96)
+target_layers = Array[int]([1, 4])
 
 [node name="SpawnTrigger" type="Area2D" parent="."]
 position = Vector2(-1265, -193)

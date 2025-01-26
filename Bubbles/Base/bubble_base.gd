@@ -66,7 +66,7 @@ func cast_collision()->void:
 			if(result.collider is Node2D):
 				pop()
 				
-	if(!collided_with):
+	if(!collided_with and tap_ring != null):
 		tap_ring.scale = lerp(tap_ring.scale, Vector2.ZERO, 0.1)
 
 func on_collide_entity(target: Player)->void:

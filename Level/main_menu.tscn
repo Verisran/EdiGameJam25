@@ -13,18 +13,37 @@ metadata/_edit_lock_ = true
 
 [node name="PlayButton" type="Button" parent="Buttons"]
 offset_left = 192.0
-offset_top = 192.0
+offset_top = 384.0
 offset_right = 384.0
-offset_bottom = 256.0
+offset_bottom = 448.0
 text = "Levels"
 
 [node name="QuitGameButton" type="Button" parent="Buttons"]
 offset_left = 192.0
-offset_top = 832.0
+offset_top = 640.0
 offset_right = 384.0
-offset_bottom = 896.0
+offset_bottom = 704.0
 text = "Quit"
 script = ExtResource("2_r2d73")
+
+[node name="Title" type="Label" parent="Buttons"]
+offset_left = 184.0
+offset_top = 128.0
+offset_right = 710.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 80
+text = "Bubble Borne"
+vertical_alignment = 1
+
+[node name="ControlScheme" type="Label" parent="Buttons"]
+offset_left = 192.0
+offset_top = 832.0
+offset_right = 1792.0
+offset_bottom = 1024.0
+theme_override_font_sizes/font_size = 40
+text = "Controls:
+A/D: Left/Right Movement       W/S: Slower/Faster Wallslide
+Space: Jump                                 E: Activate Bubble"
 
 [node name="LevelSelector" parent="." node_paths=PackedStringArray("main_menu_btn") instance=ExtResource("2_fwqoi")]
 main_menu_btn = NodePath("../Buttons")
